@@ -1,12 +1,5 @@
 import create from 'zustand'
-
-interface modalInfo {    
-    modalOpen: Boolean;
-    modalIndex: number;
-    setModalIndex:(num:number)=>void;
-    openModal: () => void;
-    closeModal: () => void;
-}  
+import modalInfo from '../types/modalInfo';
 
 export const useModal = create<modalInfo>((set) => ({
   modalOpen:false,
