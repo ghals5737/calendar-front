@@ -79,8 +79,7 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
                                         className="w-[150px] text-center outline-none"
                                         timeInputLabel="시간:"
                                         showTimeInput
-                                    />
-                                    
+                                    />                                    
                                 </div>                                
                                 
                                 <div className='w-3/4 my-3'>

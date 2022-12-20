@@ -15,7 +15,7 @@ export default function getDays(month:number){
             let days = today.clone().startOf('year').week(week).startOf('week').add(i, 'day'); // 그날의 시간 정보
             // console.log(days.format('YYYY-MM-DD'))
             weekArray.push(
-                new daysInfo(index++,Number(days.format('YYYY')),Number(days.format('MM')),Number(days.format('DD')))                
+                new daysInfo(index++,Number(days.format('YYYY')),Number(days.format('MM')),Number(days.format('DD')),days.toDate())                
             )
         }  
         result.push(weekArray)

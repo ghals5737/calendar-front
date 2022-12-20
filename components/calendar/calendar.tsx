@@ -3,7 +3,6 @@ import {useMonth} from '../../store/useMonth'
 import {useDaysInfo} from '../../store/useDaysInfo'
 import DayGrid from './dayGrid'
 import React, {useEffect} from 'react';
-import ScheduleInput from '../schedule/scheduleInput';
 
 function calendar(){
     const {month,addMonth,minusMonth}=useMonth(state=>state);
