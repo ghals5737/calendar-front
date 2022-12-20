@@ -4,9 +4,9 @@ import scheduleInfo from '../types/scheduleInfo'
 
 export const useScheduleList = create<scheduleListInfo>((set) => ({
     scheduleList:[],
-    addSchedule:(schedule:scheduleInfo)=>{
+    addSchedule:(schedule:scheduleInfo)=>{     
         set((state)=>({
-            scheduleList:[schedule,...state.scheduleList]
-        }))
+            scheduleList:[...state.scheduleList,schedule]            
+        }))        
     }
 }));

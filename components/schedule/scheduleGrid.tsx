@@ -1,27 +1,14 @@
-import { useScheduleList } from "../../store/useScheduleList"
 import scheduleInfo from '../../types/scheduleInfo'
 
-function scheduleGrid({ children,now }: { children: React.ReactNode,now:Date}){
-    const {scheduleList}=useScheduleList(state=>state)
-    
-    const isShow=(start:Date,end:Date,now:Date)=>{
-        return start<=now&&now<=end        
-    }
-
-    const filterItems=():scheduleInfo[]=>{
-        return scheduleList.filter(el=>{isShow(el.startDt,el.endDt,now)})
-    }
-
+function scheduleGrid({schedule}:{schedule:scheduleInfo}){
     return(        
-        filterItems().map(()=>{
-            return(
-                <div>
-                </div>
-            )
-        })          
-        // <div className="h-5 bg-blue-500" role={'button'}>
-        //     shceduleGridz
-        // </div>
+        <div className="h-5 bg-blue-500" role={'button'}>
+            <span className='flex overflow-hidden items-center'>
+                <span className='flex-initial'>
+                    shceduleGridz
+                </span>
+            </span>
+        </div>  
     )
 }
 

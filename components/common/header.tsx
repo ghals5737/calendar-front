@@ -1,7 +1,7 @@
-function header(){
+function header(){  
     return(
       <header className="w-full h-16 border-b-2 border-gray-100">
-        <div>
+        <div>          
             <p>header</p>            
         </div>
       </header>
