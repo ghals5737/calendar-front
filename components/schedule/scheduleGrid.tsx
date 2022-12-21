@@ -1,15 +1,25 @@
+import { useDetailModal } from '../../store/useDetailModal'
 import scheduleInfo from '../../types/scheduleInfo'
 import scheduleLayoutInfo from '../../types/scheduleLayoutInfo'
+import ScheduleDetailModal from '../modal/scheduleDetailModal'
 
-function scheduleGrid({scheduleLayoutInfo}:{scheduleLayoutInfo:scheduleLayoutInfo}){
-    console.log('schedule>',scheduleLayoutInfo)
-    
+function scheduleGrid({id,scheduleLayoutInfo}:{id:number,scheduleLayoutInfo:scheduleLayoutInfo}){
+    const {modalOpen,openModal,setModalIndex}=useDetailModal(state=>state)           
+
+    const open=()=>{
+        if(modalOpen!==true){
+            setModalIndex(id)
+            openModal()
+        }
+    }
+
     //col-start-${scheduleLayoutInfo.startCol} col-end-${scheduleLayoutInfo.endCol} bg-${scheduleLayoutInfo.schedule.color}-400
     return(        
-        <div className={` ${scheduleLayoutInfo.color} ${scheduleLayoutInfo.gridRange} z-999`} role={'button'}>            
+        <div onClick={open} className={`hover:bg-opacity-90 mb-[2px] rounded-md mx-1 pl-2 bg-${scheduleLayoutInfo.color}-500 ${scheduleLayoutInfo.gridRange} z-99`} role={'button'}>            
             <span className='flex-initial'>
-                {scheduleLayoutInfo.schedule.des}
-            </span>            
+                {scheduleLayoutInfo.schedule.title}
+            </span>
+            <ScheduleDetailModal id={id} schedule={scheduleLayoutInfo.schedule}></ScheduleDetailModal>            
         </div>  
     )
 }

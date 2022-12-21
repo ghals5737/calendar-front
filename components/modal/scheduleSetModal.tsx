@@ -15,6 +15,7 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
     const [endDt,setEndDt]=useState(day.date) 
     const [title,setTitle]=useState('') 
     const [des,setDes]=useState('') 
+    const [color,setColor]=useState('red')    
     
     const close=()=>{        
         closeModal()
@@ -30,13 +31,12 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
             startDt:startDt,
             endDt:endDt,
             title:title,
-            color:'blue',
+            color:color,
             des:des
             } as scheduleInfo
         )        
         closeModal()     
     }
-    
 
     return (
       // 모달이 열릴때 openModal 클래스가 생성된다.
@@ -61,7 +61,7 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
                                     <input className='w-3/4 h-[60px] font-bold text-black border-b outline-none placeholder:text-gray-400 focus:border-blue-500 focus:border-b-2' 
                                     placeholder='제목을 입력해주세요'
                                     value={title}
-                                    onChange={(e)=>{setTitle(e.target.value)}}></input>                            
+                                    onChange={(e)=>{setTitle(e.target.value)}}></input>                                                               
                                 </div>
                             </div>          
                             <div className='h-[358px] flex flex-col items-center'>                                                                
@@ -100,7 +100,7 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
                                         className="w-[150px] text-center outline-none"
                                         timeInputLabel="시간:"
                                         showTimeInput
-                                    />                                    
+                                    />                              
                                 </div>                                
                                 
                                 <div className='w-3/4 my-3'>
@@ -124,6 +124,20 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
                                     onChange={(e) => setDes(e.target.value)}
                                     >                                    
                                     </textarea>
+                                </div>
+
+                                <div className='w-3/4 my-3'>   
+                                    <div>                                            
+                                        <span className={`rounded-full w-5 h-5 bg-${color}-500 inline-block`}></span> 
+                                    </div> 
+                                    <div className='mt-2'>     
+                                        <span onClick={()=>setColor('red')} className='rounded-full mx-2 w-5 h-5 bg-red-500 inline-block'></span>
+                                        <span onClick={()=>setColor('orange')} className='rounded-full mx-2 w-5 h-5 bg-orange-500 inline-block'></span>
+                                        <span onClick={()=>setColor('green')} className='rounded-full mx-2 w-5 h-5 bg-green-500 inline-block'></span>
+                                        <span onClick={()=>setColor('blue')} className='rounded-full mx-2 w-5 h-5 bg-blue-500 inline-block'></span>
+                                        <span onClick={()=>setColor('purple')} className='rounded-full mx-2 w-5 h-5 bg-purple-500 inline-block'></span>
+                                        <span onClick={()=>setColor('pink')} className='rounded-full mx-2 w-5 h-5 bg-pink-500 inline-block'></span> 
+                                    </div> 
                                 </div>
                             </div>       
                             <div className='h-[50px]'>

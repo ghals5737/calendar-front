@@ -20,11 +20,10 @@ function scheduleLayout({ week }: { week:daysInfo[]}){
             const result=week.filter((day)=>isInclude(schedule.startDt,schedule.endDt,day.date)) 
             console.log('result>',result)
             if(result.length>0){
-                alert("??")
                 const gridRange=getGridRange(result[0].id%7,result[result.length-1].id%7)
                 scheduleLayoutInfoList.push({
                     gridRange:gridRange,                     
-                    color:" bg-orange-500 ",                 
+                    color:schedule.color,                 
                     schedule:schedule                    
                 })
             }            
@@ -39,7 +38,7 @@ function scheduleLayout({ week }: { week:daysInfo[]}){
                 scheduleList.length>0?(                
                     filterItems().map((scheduleLayoutInfo,index)=>{                    
                         return(
-                            <ScheduleGrid key={index} scheduleLayoutInfo={scheduleLayoutInfo}></ScheduleGrid>
+                            <ScheduleGrid key={index} id={index} scheduleLayoutInfo={scheduleLayoutInfo}></ScheduleGrid>
                         )
                     })  
                 )

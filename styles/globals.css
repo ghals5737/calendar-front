@@ -23,3 +23,59 @@ main{
   display: grid;
   grid-template-rows: 55px 20px 1fr;
 }
+
+.grid-col-start-1{
+  grid-column-start: 1;
+}
+
+.grid-col-start-2{
+  grid-column-start: 2;
+}
+
+.grid-col-start-3{
+  grid-column-start: 3;
+}
+
+.grid-col-start-4{
+  grid-column-start: 4;
+}
+
+.grid-col-start-5{
+  grid-column-start: 5;
+}
+
+.grid-col-start-6{
+  grid-column-start: 6;
+}
+
+.grid-col-start-7{
+  grid-column-start: 7;
+}
+
+.grid-col-end-2{
+  grid-column-end: 2;
+}
+
+.grid-col-end-3{
+  grid-column-end: 3;
+}
+
+.grid-col-end-4{
+  grid-column-end: 4;
+}
+
+.grid-col-end-5{
+  grid-column-end: 5;
+}
+
+.grid-col-end-6{
+  grid-column-end: 6;
+}
+
+.grid-col-end-7{
+  grid-column-end: 7;
+}
+
+.grid-col-end-8{
+  grid-column-end: 8;
+}
