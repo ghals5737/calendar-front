@@ -3,6 +3,7 @@ interface scheduleInfo {
     endDt:Date;
     title:String;
     des:String; 
+    color:String;
 }  
 
 export default scheduleInfo

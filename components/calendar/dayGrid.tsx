@@ -14,8 +14,7 @@ function dayGrid({day}:{day:daysInfo}){
     }
 
     return(
-        <div onClick={open} className='grid-cols-1 hover:bg-gray-50' role="button">                
-            <p className='pt-3 pl-3'>{day.day}</p>                                                    
+        <div onClick={open} className={modalOpen?`grid-cols-1`:`z-10 grid-cols-1 hover:bg-gray-50`} role="button">            
             <ScheduleSetModal day={day}>                
                 {`${day.year}-${day.month}-${day.day}`}
             </ScheduleSetModal>                     

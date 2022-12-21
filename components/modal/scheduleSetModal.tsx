@@ -10,7 +10,7 @@ import scheduleInfo from '../../types/scheduleInfo';
 const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:daysInfo }) => {
     // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
     const {modalOpen,modalIndex,closeModal}=useModal(state=>state)   
-    const {scheduleList,addSchedule}=useScheduleList(state=>state)
+    const {addSchedule}=useScheduleList(state=>state)
     const [startDt,setStartDt]=useState(day.date)    
     const [endDt,setEndDt]=useState(day.date) 
     const [title,setTitle]=useState('') 
@@ -30,6 +30,7 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
             startDt:startDt,
             endDt:endDt,
             title:title,
+            color:'blue',
             des:des
             } as scheduleInfo
         )        
@@ -39,9 +40,9 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
 
     return (
       // 모달이 열릴때 openModal 클래스가 생성된다.
-      <div className={isOpen() ?'z-10 relative':'fixed inset-0 hidden z-99'}>
+      <div className={isOpen() ?'z-999 relative':'fixed inset-0 hidden z-99'}>
         {isOpen() ? (
-            <div className="relative z-10">                 
+            <div className="relative z-20">                 
                 <div className="fixed inset-0 transition-opacity bg-gray-100 bg-opacity-40"></div>        
                 <div className="fixed inset-0 z-10 overflow-y-auto">
                     <div className="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">           

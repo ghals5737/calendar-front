@@ -5,5 +5,6 @@ export const useSchedule = create<scheduleInfo>((set) => ({
     startDt:new Date(),
     endDt:new Date(),
     title:'',
-    des:''
+    des:'',
+    color:'blue'
 }));

@@ -1,13 +1,15 @@
 import scheduleInfo from '../../types/scheduleInfo'
+import scheduleLayoutInfo from '../../types/scheduleLayoutInfo'
 
-function scheduleGrid({schedule}:{schedule:scheduleInfo}){
+function scheduleGrid({scheduleLayoutInfo}:{scheduleLayoutInfo:scheduleLayoutInfo}){
+    console.log('schedule>',scheduleLayoutInfo)
+    
+    //col-start-${scheduleLayoutInfo.startCol} col-end-${scheduleLayoutInfo.endCol} bg-${scheduleLayoutInfo.schedule.color}-400
     return(        
-        <div className="h-5 bg-blue-500" role={'button'}>
-            <span className='flex overflow-hidden items-center'>
-                <span className='flex-initial'>
-                    shceduleGridz
-                </span>
-            </span>
+        <div className={` ${scheduleLayoutInfo.color} ${scheduleLayoutInfo.gridRange} z-999`} role={'button'}>            
+            <span className='flex-initial'>
+                {scheduleLayoutInfo.schedule.des}
+            </span>            
         </div>  
     )
 }
