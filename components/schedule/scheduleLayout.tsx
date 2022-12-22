@@ -6,8 +6,6 @@ import getGridRange from "../../utils/getGridRange"
 import { Fragment } from "react";
 
 function scheduleLayout({ week }: { week:daysInfo[]}){    
-    
-    
     let scheduleLayoutInfoList:scheduleLayoutInfo[]=[]
 
     const {scheduleList}=useScheduleList(state=>state)    
@@ -17,8 +15,7 @@ function scheduleLayout({ week }: { week:daysInfo[]}){
 //(result[result.length-1].id%7+2).toString()
     const filterItems=():scheduleLayoutInfo[]=>{                   
         scheduleList.forEach(schedule=>{
-            const result=week.filter((day)=>isInclude(schedule.startDt,schedule.endDt,day.date)) 
-            console.log('result>',result)
+            const result=week.filter((day)=>isInclude(schedule.startDt,schedule.endDt,day.date))             
             if(result.length>0){
                 const gridRange=getGridRange(result[0].id%7,result[result.length-1].id%7)
                 scheduleLayoutInfoList.push({
@@ -27,8 +24,7 @@ function scheduleLayout({ week }: { week:daysInfo[]}){
                     schedule:schedule                    
                 })
             }            
-        })
-        console.log('layout',scheduleLayoutInfoList)    
+        })        
         return scheduleLayoutInfoList    
     }    
 
