@@ -12,8 +12,7 @@ function scheduleGrid({id,scheduleLayoutInfo}:{id:number,scheduleLayoutInfo:sche
             openModal()
         }
     }
-
-    //col-start-${scheduleLayoutInfo.startCol} col-end-${scheduleLayoutInfo.endCol} bg-${scheduleLayoutInfo.schedule.color}-400
+    
     return(        
         <div onClick={open} className={`hover:bg-opacity-90 mb-[2px] rounded-md mx-1 pl-2 bg-${scheduleLayoutInfo.color}-500 ${scheduleLayoutInfo.gridRange} z-99`} role={'button'}>            
             <span className='flex-initial'>
