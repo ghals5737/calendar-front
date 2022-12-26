@@ -23,11 +23,12 @@ function header(){
   }
 
   const switchSideBar=()=>{
-    if(isAddCalendar===false){
-      closeAddCalendar()
+    //alert(isAddCalendar)
+    if(isAddCalendar==false){
+      openAddCalendar()
       return      
     }
-    openAddCalendar()
+    closeAddCalendar()
   }
 
   useEffect(() => {
@@ -38,9 +39,13 @@ function header(){
   }, []);
 
   return(
-    <header className="w-full h-16 border-b-2 border-gray-100">      
-      <div onClick={switchSideBar} className="w-8 h-4 bg-amber-400">햄버거모양 버튼</div>
+    <header className="w-full h-16 border-b-2 border-gray-100">
       <div className="flex items-center float-right h-16 pr-8">
+      <div onClick={switchSideBar} className="absolute left-2 w-7 h-7">        
+        <svg focusable="false" viewBox="0 0 24 24">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+        </svg>        
+      </div>
         <div className='relative flex'>
           <DarkModeSwitch
             style={{ width:'35px'}}

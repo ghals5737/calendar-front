@@ -17,9 +17,17 @@ body {
 }
 
 main{
-    display: grid;
-    grid-template-columns: 60px 1fr;
+    display: grid;    
 }
+
+.sideBar{
+  grid-template-columns: 60px 1fr;
+}
+
+.addSideBar{
+  grid-template-columns: 150px 1fr;
+}
+
 .calendarMain{
   display: grid;
   grid-template-rows: 55px 20px 1fr;

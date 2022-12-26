@@ -9,7 +9,7 @@ function BasicLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className='h-full text-gray-900 dark:bg-gray-800 dark:text-gray-100'>
       <Header /> 
-      <main className="h-full">
+      <main className={`h-full ${isAddCalendar?'addSideBar ease-out duration-200':'sideBar ease-in duration-200'}`}>
         {isAddCalendar?<AddCalendarSideBar/>:<SideBar/>}        
         {children}
       </main>      

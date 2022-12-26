@@ -1,24 +1,41 @@
 
-import {useMonth} from '../../store/useMonth'
+import {useDate} from '../../store/useDate'
 import {useDaysInfo} from '../../store/useDaysInfo'
 import DayGrid from './dayGrid'
 import React, {useEffect} from 'react';
 import ScheduleLayout from '../schedule/scheduleLayout';
 
 function calendar(){
-    const {month,addMonth,minusMonth}=useMonth(state=>state);
-    const {days,setDays}=useDaysInfo(state=>state);    
+    const {month,year,addMonth,minusMonth,addYear,minusYear,resetToday}=useDate(state=>state);
+    const {days,setDays}=useDaysInfo(state=>state);
+    
+    const increaseMonth=()=>{
+        if(month===12){            
+            addYear()            
+        }
+        addMonth()        
+    }
+
+    const decreaseMonth=()=>{
+        if(month===1){            
+            minusYear()            
+        }
+        minusMonth() 
+    }
 
     useEffect(() => {
-        setDays(month)
+        setDays(year,month)
     },[month])
     
     return(
         <div className="calendarMain">
-            <div className="">
-            <time dateTime="2019-02"> {`2022-${month}`} </time>
-            <button onClick={minusMonth}>{`<`}</button>
-            <button onClick={addMonth}>{`>`}</button>
+            <div className="mt-1">
+                <button onClick={resetToday} className="ml-11 mr-2 h-9 w-14 items-center justify-center border text-2xs rounded-md border-gray-300 hover:bg-gray-50">
+                오늘
+                </button>
+                <button onClick={decreaseMonth} className='mx-3 font-bold text-2xl text-zinc-500'>{`<`}</button>
+                <button onClick={increaseMonth} className='mr-5 font-bold text-2xl text-zinc-500'>{`>`}</button>
+                <time className='text-2xl' dateTime="2019-02"> {`${year}년 ${month}월`} </time>
             </div>
             <div className="grid grid-cols-7">
                 <div className='pl-3 '><p className='relative bottom-3'>일</p></div>

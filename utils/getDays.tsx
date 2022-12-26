@@ -1,11 +1,12 @@
 import moment from 'moment'
 import daysInfo from '../types/daysInfo'
 
-export default function getDays(month:number){
+export default function getDays(year:number,month:number){
     // 이번 달 배열에 담기 
     let result = []; // 이번 달 배열   
     let index=0; 
-    const today = moment().month(month-1); // 오늘
+    const today = moment().year(year).month(month-1); // 오늘
+    console.log('today:',today)
     const todayFirstWeek = today.clone().startOf('month').week(); // 이번달의 첫째 주
     const todayLastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week(); // 이번달의 마지막 주    
     let week = todayFirstWeek;

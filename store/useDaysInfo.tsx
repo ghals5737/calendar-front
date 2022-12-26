@@ -5,14 +5,14 @@ import moment from 'moment'
 
 interface daysDataInfo {    
     days: daysInfo[][];
-    setDays: (month: number) => void;
+    setDays: (year:number,month: number) => void;
 }  
 
 export const useDaysInfo = create<daysDataInfo>((set) => ({
-    days:getDays(Number(moment().format('MM'))),  
-    setDays:(month:number)=>{
+    days:getDays(Number(moment().format('YYYY')),Number(moment().format('MM'))),  
+    setDays:(year:number,month:number)=>{
         set(()=>({
-            days:getDays(month)
+            days:getDays(year,month)
         }));
     }
 }));

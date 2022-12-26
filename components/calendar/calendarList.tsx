@@ -7,9 +7,9 @@ function calendarList(){
     return (
         <ul className="">
             <div>
-                <div className="css-5uiqd3 ey033w70">
+                <div className="">
                 <span
-                    className="ttfont-done_all css-11g29m3 eojaki30"
+                    className=""
                     role="button"
                     aria-label="전체 선택"
                 ></span>
