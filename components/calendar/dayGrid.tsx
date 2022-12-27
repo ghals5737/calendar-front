@@ -7,11 +7,10 @@ function dayGrid({day}:{day:daysInfo}){
     const {modalOpen,openModal,setModalIndex}=useModal(state=>state)           
 
     const open=()=>{        
-        if (localStorage.getItem("loginToken") === null) {
-            // 다크모드 -> 기본모드 
-            alert("login 하세요")                                    
-            return
-          } 
+        // if (localStorage.getItem("loginToken") === null) {        
+        //     alert("login 하세요")                                    
+        //     return
+        // } 
         if(modalOpen!==true){
             setModalIndex(day.id)
             openModal()
