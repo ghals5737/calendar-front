@@ -2,12 +2,15 @@ import {useState,useEffect} from 'react';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import Link from 'next/link'
 import { useSwitchSideBar } from '../../store/useSwitchSideBar';
+import {usePathname,useRouter} from 'next/navigation';
 
 function header(){  
   //const [theme,setTheme]=useState('light')  
   const [isDarkMode, setDarkMode] = useState(false);
-  const {isAddCalendar,openAddCalendar,closeAddCalendar}=useSwitchSideBar(state=>state)
-
+  const {isAddCalendar,openAddCalendar,closeAddCalendar}=useSwitchSideBar(state=>state)  
+  const pathname  = usePathname()
+  const router= useRouter()
+  
   const toggleTheme=(checked: boolean)=>{    
     if (localStorage.getItem("theme") === "dark") {
       // 다크모드 -> 기본모드 
@@ -31,6 +34,11 @@ function header(){
     closeAddCalendar()
   }
 
+  const routeMain=()=>{
+    closeAddCalendar()
+    router.push('/')
+  }
+
   useEffect(() => {
     // 처음에 다크모드인지 판단해서 뿌려주기 !! ( 나중에는 상태관리를 해도 괜찮습니다 ! )
     if (localStorage.getItem("theme") === "dark") {
@@ -40,12 +48,20 @@ function header(){
 
   return(
     <header className="w-full h-16 border-b-2 border-gray-100">
-      <div className="flex items-center float-right h-16 pr-8">
-      <div onClick={switchSideBar} className="absolute left-2 w-7 h-7">        
-        <svg focusable="false" viewBox="0 0 24 24">
-          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
-        </svg>        
-      </div>
+      <div className="flex items-center float-right h-16 pr-8">       
+        {
+          pathname==='/calendar/create'?
+            <div onClick={routeMain} className="absolute left-2 w-7 h-7" aria-label="돌아가기" title="돌아가기" role="button">                
+              <svg focusable="false" viewBox="0 0 24 24">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+              </svg>
+            </div>:
+            <div onClick={switchSideBar} className="absolute left-2 w-7 h-7">        
+              <svg focusable="false" viewBox="0 0 24 24">
+                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+              </svg>        
+            </div>
+        } 
         <div className='relative flex'>
           <DarkModeSwitch
             style={{ width:'35px'}}

@@ -42,11 +42,11 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
       // 모달이 열릴때 openModal 클래스가 생성된다.
       <div className={isOpen() ?'z-999 relative':'fixed inset-0 hidden z-99'}>
         {isOpen() ? (
-            <div className="relative z-20">                 
+            <div className="relative z-20 ">                 
                 <div className="fixed inset-0 transition-opacity bg-gray-100 bg-opacity-40"></div>        
                 <div className="fixed inset-0 z-10 overflow-y-auto">
                     <div className="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">           
-                        <div className='bg-white border border-gray-400 rounded shadow-md  w-[448px] h-[515px]'>
+                        <div className='bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600  border border-gray-400 rounded shadow-md  w-[448px] h-[515px]'>
                             <div className='h-[36px] '>
                                 <button onClick={close} className="top-0 right-0 float-right mt-2 mr-2 text-gray-400 align-middle transition duration-150 ease-in-out rounded cursor-pointer hover:text-gray-600 focus:ring-2 focus:outline-none focus:ring-gray-600" aria-label="close modal" role="button">
                                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -58,7 +58,22 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
                             </div>
                             <div className='h-[69px] '>                                
                                 <div>
-                                    <input className='w-3/4 h-[60px] font-bold text-black border-b outline-none placeholder:text-gray-400 focus:border-blue-500 focus:border-b-2' 
+                                    <input className='
+                                    w-3/4 h-[60px] 
+                                    font-bold 
+                                    text-black 
+                                    border-b 
+                                    outline-none 
+                                    placeholder:text-gray-400 
+                                    focus:border-blue-500 
+                                    focus:border-b-2
+                                    dark:bg-gray-800 
+                                    dark:border-gray-600 
+                                    dark:placeholder-gray-400 
+                                    dark:text-white 
+                                    dark:focus:ring-blue-500 
+                                    dark:focus:border-blue-500
+                                    ' 
                                     placeholder='제목을 입력해주세요'
                                     value={title}
                                     onChange={(e)=>{setTitle(e.target.value)}}></input>                                                               
@@ -83,7 +98,15 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
                                         locale={ko}
                                         startDate={startDt}
                                         endDate={endDt}    
-                                        className="w-[150px] text-center outline-none"
+                                        className="
+                                        w-[150px] 
+                                        text-center outline-none 
+                                        dark:bg-gray-800 
+                                        dark:border-gray-600 
+                                        dark:placeholder-gray-400 
+                                        dark:text-white 
+                                        dark:focus:ring-blue-500 
+                                        dark:focus:border-blue-500" 
                                         timeInputLabel="시간:"   
                                         showTimeInput                                 
                                     />
@@ -97,7 +120,15 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
                                         startDate={startDt}
                                         endDate={endDt}
                                         minDate={startDt}
-                                        className="w-[150px] text-center outline-none"
+                                        className="
+                                        w-[150px] 
+                                        text-center outline-none 
+                                        dark:bg-gray-800 
+                                        dark:border-gray-600 
+                                        dark:placeholder-gray-400 
+                                        dark:text-white 
+                                        dark:focus:ring-blue-500 
+                                        dark:focus:border-blue-500" 
                                         timeInputLabel="시간:"
                                         showTimeInput
                                     />                              
@@ -113,7 +144,7 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
                                     border-gray-300 
                                     focus:ring-blue-500 
                                     focus:border-blue-500 
-                                    dark:bg-gray-700 
+                                    dark:bg-gray-800 
                                     dark:border-gray-600 
                                     dark:placeholder-gray-400 
                                     dark:text-white 
@@ -131,12 +162,12 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
                                         <span className={`rounded-full w-5 h-5 bg-${color}-500 inline-block`}></span> 
                                     </div> 
                                     <div className='mt-2'>     
-                                        <span onClick={()=>setColor('red')} className='rounded-full mx-2 w-5 h-5 bg-red-500 inline-block'></span>
-                                        <span onClick={()=>setColor('orange')} className='rounded-full mx-2 w-5 h-5 bg-orange-500 inline-block'></span>
-                                        <span onClick={()=>setColor('green')} className='rounded-full mx-2 w-5 h-5 bg-green-500 inline-block'></span>
-                                        <span onClick={()=>setColor('blue')} className='rounded-full mx-2 w-5 h-5 bg-blue-500 inline-block'></span>
-                                        <span onClick={()=>setColor('purple')} className='rounded-full mx-2 w-5 h-5 bg-purple-500 inline-block'></span>
-                                        <span onClick={()=>setColor('pink')} className='rounded-full mx-2 w-5 h-5 bg-pink-500 inline-block'></span> 
+                                        <span onClick={()=>setColor('red')} className='inline-block w-5 h-5 mx-2 bg-red-500 rounded-full'></span>
+                                        <span onClick={()=>setColor('orange')} className='inline-block w-5 h-5 mx-2 bg-orange-500 rounded-full'></span>
+                                        <span onClick={()=>setColor('green')} className='inline-block w-5 h-5 mx-2 bg-green-500 rounded-full'></span>
+                                        <span onClick={()=>setColor('blue')} className='inline-block w-5 h-5 mx-2 bg-blue-500 rounded-full'></span>
+                                        <span onClick={()=>setColor('purple')} className='inline-block w-5 h-5 mx-2 bg-purple-500 rounded-full'></span>
+                                        <span onClick={()=>setColor('pink')} className='inline-block w-5 h-5 mx-2 bg-pink-500 rounded-full'></span> 
                                     </div> 
                                 </div>
                             </div>       

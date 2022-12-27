@@ -4,20 +4,15 @@ import moment from 'moment'
 import calendarInfo from '../types/calendarInfo';
 
 interface CalendarDataInfo {    
-    calendars: calendarInfo[];    
+    calendars: calendarInfo[]; 
+    addCalendar:(calendar:calendarInfo) => void;  
 }  
 
 export const useCalendarInfo = create<CalendarDataInfo>((set) => ({
-    calendars:[
-        {    
-            calendarId: 1,
-            calendarTitle: 'test1',
-            color:'red'
-        },
-        {   
-            calendarId: 2,
-            calendarTitle: 'test2',
-            color:'green'
-        }
-    ]      
+    calendars:[],
+    addCalendar: (calendar) => {
+      set((state) => ({
+        calendars:[...state.calendars,calendar]
+        }));
+    },
 }));
