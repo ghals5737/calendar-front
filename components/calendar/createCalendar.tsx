@@ -33,8 +33,9 @@ function createCalendar(){
                 <div className="space-y-1">
                     <label                    
                     className="text-sm font-medium text-gray-700 dark:text-gray-300"
-                    >테마</label
-                    ><select
+                    >테마
+                    </label>
+                    <select
                     id="categoryCode"                    
                     className="block w-full pl-3 pr-10 text-base rounded-md shadow-sm border-gray-500/30 placeholder-gray-500/80 focus:border-gray-500 focus:outline-none focus:ring-0 dark:bg-gray-500/20"
                     name="categoryCode"

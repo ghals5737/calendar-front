@@ -19,6 +19,7 @@
     "@types/react-datepicker": "^4.8.0",
     "@types/react-dom": "18.0.9",
     "@types/react-modal": "^3.13.1",
+    "axios": "^1.2.2",
     "dark-mode-toggle": "^0.14.3",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
