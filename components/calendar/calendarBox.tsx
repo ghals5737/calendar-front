@@ -6,7 +6,7 @@ function calendarBox({calendar}:{calendar:calendarInfo}){
             <li className="px-1">
                 <div className={`flex items-center justify-center w-12 bg-${calendar.color}-500 rounded-sm h-11`}>
                     <div className="">
-                    <p className="text-xs text-white">{calendar.calendarTitle}</p>
+                    <p className="text-xs text-white">{calendar.title}</p>
                     </div>                
                 </div>
             </li>

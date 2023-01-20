@@ -14,10 +14,10 @@ export const useCalendarInfo = create<CalendarDataInfo>((set) => ({
      addCalendar: (calendar) => { 
         axios.post('/calendar/test',{
             calendarId:calendar.calendarId,
-            title:calendar.calendarTitle,
-            description:calendar.calendarDes,
+            title:calendar.title,
+            description:calendar.description,
             color:calendar.color,
-            category:calendar.calendarCategory
+            category:calendar.category
         }).then((data)=>{
             console.log('data>',data)
             set((state) => ({

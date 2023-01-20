@@ -11,9 +11,9 @@ function createCalendar(){
     const addCal=()=>{
         addCalendar({
             calendarId:0,
-            calendarTitle:calendarTitle,
-            calendarDes:calendarDes,
-            calendarCategory:calendarCategory,
+            title:calendarTitle,
+            description:calendarDes,
+            category:calendarCategory,
             color:color
         })        
     }

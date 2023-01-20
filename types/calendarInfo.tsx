@@ -1,8 +1,8 @@
 interface calendarInfo {    
     calendarId: number;
-    calendarTitle: string;
-    calendarDes: string;
-    calendarCategory: string;
+    title: string;
+    description: string;
+    category: string;
     color:string;
 }  
 
