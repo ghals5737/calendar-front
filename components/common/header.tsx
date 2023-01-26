@@ -1,4 +1,4 @@
-import {useState,useEffect} from 'react';
+import {useState,useEffect,Fragment } from 'react';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import Link from 'next/link'
 import { useSwitchSideBar } from '../../store/useSwitchSideBar';
@@ -10,6 +10,8 @@ function header(){
   const {isAddCalendar,openAddCalendar,closeAddCalendar}=useSwitchSideBar(state=>state)  
   const pathname  = usePathname()
   const router= useRouter()
+  const nickName=sessionStorage.getItem("nickName")
+
   
   const toggleTheme=(checked: boolean)=>{    
     if (localStorage.getItem("theme") === "dark") {
@@ -61,28 +63,37 @@ function header(){
                 <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
               </svg>        
             </div>
-        } 
-        <div className='relative flex'>
-          <DarkModeSwitch
-            style={{ width:'35px'}}
-            checked={isDarkMode}
-            onChange={toggleTheme}
-            sunColor={'#FFE000'}
-            size={120}
-          />
-        </div>
-        <div className='relative flex'>
-          <Link href={'/login'}>
-            <button className="ml-2 hidden h-[35px] w-[85px] items-center justify-center rounded-3xl border border-gray-500/30 bg-white text-center text-xs font-medium text-gray-900 shadow-sm hover:bg-gray-100 focus:outline-none dark:border-gray-500/70 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 sm:flex lg:ml-10">
-              로그인
-            </button>
-          </Link>
-          <Link href={'/signup'}>
-            <button className="ml-2.5 hidden h-[35px] w-[85px] items-center justify-center rounded-3xl border border-transparent bg-blue-500 px-2 py-0.5 text-xs font-medium text-white hover:bg-blue-400 focus:outline-none focus:ring-offset-0 sm:flex">
-              회원가입
-            </button>
-          </Link>
-        </div>
+
+            
+        }  
+        {nickName=== null ?
+          <Fragment>
+            <div className='relative flex'>
+              <DarkModeSwitch
+                style={{ width:'35px'}}
+                checked={isDarkMode}
+                onChange={toggleTheme}
+                sunColor={'#FFE000'}
+                size={120}
+              />
+            </div>
+            <div className='relative flex'>
+              <Link href={'/login'}>
+                <button className="ml-2 hidden h-[35px] w-[85px] items-center justify-center rounded-3xl border border-gray-500/30 bg-white text-center text-xs font-medium text-gray-900 shadow-sm hover:bg-gray-100 focus:outline-none dark:border-gray-500/70 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 sm:flex lg:ml-10">
+                  로그인
+                </button>
+              </Link>
+              <Link href={'/signup'}>
+                <button className="ml-2.5 hidden h-[35px] w-[85px] items-center justify-center rounded-3xl border border-transparent bg-blue-500 px-2 py-0.5 text-xs font-medium text-white hover:bg-blue-400 focus:outline-none focus:ring-offset-0 sm:flex">
+                  회원가입
+                </button>
+              </Link>
+            </div>
+          </Fragment>:
+          <div className='relative flex'>
+            <label>{nickName}</label>
+          </div>
+          }
       </div>
     </header>
   )
