@@ -30,11 +30,11 @@ function calendar(){
     return(
         <div className="calendarMain">
             <div className="mt-1">
-                <button onClick={resetToday} className="ml-11 mr-2 h-9 w-14 items-center justify-center border text-2xs rounded-md border-gray-300 hover:bg-gray-50">
+                <button onClick={resetToday} className="items-center justify-center mr-2 border border-gray-300 rounded-md ml-11 h-9 w-14 text-2xs hover:bg-gray-50">
                 오늘
                 </button>
-                <button onClick={decreaseMonth} className='mx-3 font-bold text-2xl text-zinc-500'>{`<`}</button>
-                <button onClick={increaseMonth} className='mr-5 font-bold text-2xl text-zinc-500'>{`>`}</button>
+                <button onClick={decreaseMonth} className='mx-3 text-2xl font-bold text-zinc-500'>{`<`}</button>
+                <button onClick={increaseMonth} className='mr-5 text-2xl font-bold text-zinc-500'>{`>`}</button>
                 <time className='text-2xl' dateTime="2019-02"> {`${year}년 ${month}월`} </time>
             </div>
             <div className="grid grid-cols-7">
@@ -70,7 +70,7 @@ function calendar(){
                                     }                                    
                                 </div>
                                 <div className='grid grid-cols-7'>
-                                    <ScheduleLayout week={week}></ScheduleLayout>
+                                    <ScheduleLayout week={week}></ScheduleLayout>                                    
                                 </div>
                             </div>                            
                         </div>

@@ -9,9 +9,8 @@ function header(){
   const [isDarkMode, setDarkMode] = useState(false);
   const {isAddCalendar,openAddCalendar,closeAddCalendar}=useSwitchSideBar(state=>state)  
   const pathname  = usePathname()
-  const router= useRouter()
-  const nickName=sessionStorage.getItem("nickName")
-
+  const router= useRouter()  
+  const nickName = typeof window !== 'undefined' ? sessionStorage.getItem('nickName') : null;
   
   const toggleTheme=(checked: boolean)=>{    
     if (localStorage.getItem("theme") === "dark") {
@@ -29,6 +28,10 @@ function header(){
 
   const switchSideBar=()=>{
     //alert(isAddCalendar)
+    if (sessionStorage.getItem("userId") === null) { 
+      alert("로그인이 필요합니다.")                                                      
+      return
+    } 
     if(isAddCalendar==false){
       openAddCalendar()
       return      
@@ -40,6 +43,8 @@ function header(){
     closeAddCalendar()
     router.push('/')
   }
+
+  
 
   useEffect(() => {
     // 처음에 다크모드인지 판단해서 뿌려주기 !! ( 나중에는 상태관리를 해도 괜찮습니다 ! )
