@@ -20,5 +20,5 @@ export const useScheduleList = create<scheduleListInfo>((set) => ({
             }))
         }) 
                 
-    }
+    },    
 }));
