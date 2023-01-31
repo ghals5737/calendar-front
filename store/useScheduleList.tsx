@@ -5,9 +5,11 @@ import axios from '../api/axiosInstance';
 
 export const useScheduleList = create<scheduleListInfo>((set) => ({
     scheduleList:[],    
-    addSchedule:(schedule:scheduleInfo)=>{    
+    addSchedule:(schedule)=>{    
         axios.post('/schedule',{
-            calendarId:1,
+            calendarId:schedule.calendarId,
+            startYmd:schedule.startYmd,
+            endYmd:schedule.endYmd,
             startDt:schedule.startDt,
             endDt:schedule.endDt,
             title:schedule.title,
@@ -18,7 +20,15 @@ export const useScheduleList = create<scheduleListInfo>((set) => ({
             set((state)=>({
                 scheduleList:[...state.scheduleList,schedule]            
             }))
+        })                 
+    },
+    getScheduleList:(calendarId,startYmd,endYmd)=>{
+        axios.get(`/schedule/calendar/${calendarId}?startYmd=${startYmd}&endYmd=${endYmd}`)
+        .then((result)=>{
+            //console.log('data>',result.data.body.data)
+            set(()=>({
+                scheduleList:[...result.data.body.data]
+            }))
         }) 
-                
     }
 }));

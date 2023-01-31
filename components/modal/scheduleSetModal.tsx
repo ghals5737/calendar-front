@@ -6,6 +6,7 @@ import { ko } from 'date-fns/esm/locale';
 import "react-datepicker/dist/react-datepicker.css";
 import { useScheduleList } from "../../store/useScheduleList"
 import scheduleInfo from '../../types/scheduleInfo';
+import moment from 'moment'
 
 const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:daysInfo }) => {
     // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
@@ -26,8 +27,13 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
     }
 
     const submit=()=>{        
+        console.log(moment(startDt).format('YYYYMMDD'))
+        console.log(moment(endDt).format('YYYYMMDD'))
         addSchedule(
             {
+            calendarId:1,
+            startYmd:moment(startDt).format('YYYYMMDD'),
+            endYmd:moment(endDt).format('YYYYMMDD'),    
             startDt:startDt,
             endDt:endDt,
             title:title,

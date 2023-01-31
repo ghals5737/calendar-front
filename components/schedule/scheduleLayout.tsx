@@ -9,14 +9,13 @@ function scheduleLayout({ week }: { week:daysInfo[]}){
     let scheduleLayoutInfoList:scheduleLayoutInfo[]=[]
 
     const {scheduleList}=useScheduleList(state=>state)    
-    const isInclude=(start:Date,end:Date,now:Date)=>{        
-        return start<=now&&now<=end        
+    const isInclude=(startYmd:string,endYmd:string,nowYmd:string)=>{            
+        return startYmd<=nowYmd&&nowYmd<=endYmd        
     }
-//(result[result.length-1].id%7+2).toString()
-    const filterItems=():scheduleLayoutInfo[]=>{                   
-        scheduleList.forEach(schedule=>{
-            const result=week.filter((day)=>isInclude(schedule.startDt,schedule.endDt,day.date))             
-            if(result.length>0){
+    const filterItems=():scheduleLayoutInfo[]=>{              
+        scheduleList.forEach(schedule=>{            
+            const result=week.filter((day)=>isInclude(schedule.startYmd,schedule.endYmd,day.ymd))             
+            if(result.length>0){                
                 const gridRange=getGridRange(result[0].id%7,result[result.length-1].id%7)
                 scheduleLayoutInfoList.push({
                     gridRange:gridRange,                     
@@ -24,7 +23,7 @@ function scheduleLayout({ week }: { week:daysInfo[]}){
                     schedule:schedule                    
                 })
             }            
-        })        
+        })                
         return scheduleLayoutInfoList    
     }    
 

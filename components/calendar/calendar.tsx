@@ -4,10 +4,13 @@ import {useDaysInfo} from '../../store/useDaysInfo'
 import DayGrid from './dayGrid'
 import React, {useEffect} from 'react';
 import ScheduleLayout from '../schedule/scheduleLayout';
+import { useScheduleList } from '../../store/useScheduleList';
+import daysInfo from '../../types/daysInfo'
 
 function calendar(){
     const {month,year,addMonth,minusMonth,addYear,minusYear,resetToday}=useDate(state=>state);
     const {days,setDays}=useDaysInfo(state=>state);
+    const {getScheduleList}=useScheduleList(state=>state)
     
     const increaseMonth=()=>{
         if(month===12){            
@@ -25,6 +28,9 @@ function calendar(){
 
     useEffect(() => {
         setDays(year,month)
+        console.log("start days:",days[0][0].ymd)
+        console.log("end days:",days[4][6].ymd)
+        getScheduleList(1,days[0][0].ymd,days[4][6].ymd)
     },[month])
     
     return(
