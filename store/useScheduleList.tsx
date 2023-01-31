@@ -30,5 +30,10 @@ export const useScheduleList = create<scheduleListInfo>((set) => ({
                 scheduleList:[...result.data.body.data]
             }))
         }) 
+<<<<<<< HEAD
     }
+=======
+                
+    },    
+>>>>>>> 1946f1b76bf30543945094e06315ae4383aaad94
 }));
