@@ -2,16 +2,19 @@
 import {useDate} from '../../store/useDate'
 import {useDaysInfo} from '../../store/useDaysInfo'
 import DayGrid from './dayGrid'
-import React, {useEffect} from 'react';
+import React, {useEffect,Fragment} from 'react';
 import ScheduleLayout from '../schedule/scheduleLayout';
 import { useScheduleList } from '../../store/useScheduleList';
 import daysInfo from '../../types/daysInfo'
+import calendarInfo from '../../types/calendarInfo';
+import { useCalendarInfo } from '../../store/useCalendarInfo';
 
 function calendar(){
     const {month,year,addMonth,minusMonth,addYear,minusYear,resetToday}=useDate(state=>state);
     const {days,setDays}=useDaysInfo(state=>state);
-    const {getScheduleList}=useScheduleList(state=>state)
-    
+    const {getScheduleList}=useScheduleList(state=>state)    
+    const {getCalendars}=useCalendarInfo(state=>state)
+
     const increaseMonth=()=>{
         if(month===12){            
             addYear()            
@@ -30,10 +33,13 @@ function calendar(){
         setDays(year,month)
         console.log("start days:",days[0][0].ymd)
         console.log("end days:",days[4][6].ymd)
-        getScheduleList(1,days[0][0].ymd,days[4][6].ymd)
+        if(sessionStorage.getItem("calendarId")!==null){   
+            getCalendars(sessionStorage.getItem("userId")!)         
+            getScheduleList(Number(sessionStorage.getItem("calendarId")),days[0][0].ymd,days[4][6].ymd)
+        }
     },[month])
     
-    return(
+    return(        
         <div className="calendarMain">
             <div className="mt-1">
                 <button onClick={resetToday} className="items-center justify-center mr-2 border border-gray-300 rounded-md ml-11 h-9 w-14 text-2xs hover:bg-gray-50">
@@ -83,7 +89,7 @@ function calendar(){
                     )                                
                 })}                                 
             </div>            
-        </div>        
+        </div>             
     )
 }
 

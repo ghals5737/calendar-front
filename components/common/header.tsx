@@ -1,8 +1,10 @@
+'use client';
 import {useState,useEffect,Fragment } from 'react';
 import { DarkModeSwitch } from 'react-toggle-dark-mode';
 import Link from 'next/link'
 import { useSwitchSideBar } from '../../store/useSwitchSideBar';
 import {usePathname,useRouter} from 'next/navigation';
+import { useCalendarInfo } from '../../store/useCalendarInfo';
 
 function header(){  
   //const [theme,setTheme]=useState('light')  
@@ -10,8 +12,14 @@ function header(){
   const {isAddCalendar,openAddCalendar,closeAddCalendar}=useSwitchSideBar(state=>state)  
   const pathname  = usePathname()
   const router= useRouter()  
-  const nickName = typeof window !== 'undefined' ? sessionStorage.getItem('nickName') : null;
-  
+  const {getCalendars}=useCalendarInfo(state=>state);
+  //const nickname = sessionStorage.getItem('nickname') : null;
+  const logout=()=>{    
+    sessionStorage.removeItem("userId")
+    sessionStorage.removeItem("nickname")
+    sessionStorage.removeItem("calendarId")    
+    window.location.href = "/"
+  }
   const toggleTheme=(checked: boolean)=>{    
     if (localStorage.getItem("theme") === "dark") {
       // 다크모드 -> 기본모드 
@@ -32,8 +40,8 @@ function header(){
       alert("로그인이 필요합니다.")                                                      
       return
     } 
-    if(isAddCalendar==false){
-      openAddCalendar()
+    if(isAddCalendar==false){     
+      openAddCalendar()      
       return      
     }
     closeAddCalendar()
@@ -71,7 +79,7 @@ function header(){
 
             
         }  
-        {nickName=== null ?
+        {sessionStorage.getItem('nickname')=== null ?
           <Fragment>
             <div className='relative flex'>
               <DarkModeSwitch
@@ -96,7 +104,12 @@ function header(){
             </div>
           </Fragment>:
           <div className='relative flex'>
-            <label>{nickName}</label>
+            <label>{sessionStorage.getItem('nickname')}</label>
+            <button 
+            className="ml-2 hidden h-[35px] w-[85px] items-center justify-center rounded-3xl border border-gray-500/30 bg-white text-center text-xs font-medium text-gray-900 shadow-sm hover:bg-gray-100 focus:outline-none dark:border-gray-500/70 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 sm:flex lg:ml-10"
+            onClick={logout}>
+                  로그아웃
+            </button>     
           </div>
           }
       </div>

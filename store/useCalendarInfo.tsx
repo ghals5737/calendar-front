@@ -6,23 +6,47 @@ import axios from '../api/axiosInstance';
 
 interface CalendarDataInfo {    
     calendars: calendarInfo[]; 
-    addCalendar:(calendar:calendarInfo) => void;  
+    nowCalendar: calendarInfo|null;
+    addCalendar:(userId:string,calendar:calendarInfo) => void;  
+    initCalendars:(userId:string) => void;
+    getCalendars:(userId:string) => void;  
 }  
 //localhost:8080/api/calendar
 export const useCalendarInfo = create<CalendarDataInfo>((set) => ({
     calendars:[],
-     addCalendar: (calendar) => { 
-        axios.post('/calendar/test',{
-            calendarId:calendar.calendarId,
+    nowCalendar:null,
+    initCalendars: (userId)=>{
+        axios.get(`/calendar/users/${userId}`)
+        .then((result)=>{
+            console.log(result.data.body.data)
+            sessionStorage.setItem("calendarId",result.data.body.data[0].calendarId)            
+            set(() => ({
+                calendars:[...result.data.body.data]
+            }))            
+        })
+    },
+    getCalendars: (userId)=>{
+        axios.get(`/calendar/users/${userId}`)
+        .then((result)=>{
+            console.log(result.data.body.data)            
+            set(() => ({
+                calendars:[...result.data.body.data]
+            }))            
+        })
+    },
+    addCalendar: (userId,calendar) => { 
+        axios.post('/calendar',{
+            userId:Number(userId),
             title:calendar.title,
             description:calendar.description,
             color:calendar.color,
             category:calendar.category
-        }).then((data)=>{
-            console.log('data>',data)
+        }).then((result)=>{
+            console.log('data>',result.data.body.data)
+            sessionStorage.setItem("calendarId",result.data.body.data.calendarId)
             set((state) => ({
-                calendars:[...state.calendars,calendar]
-            }));
-        })                     
+            calendars:[...state.calendars,result.data.body.data],                        
+        }));
+    })                     
     },
 }));

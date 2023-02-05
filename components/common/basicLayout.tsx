@@ -1,3 +1,4 @@
+'use client';
 import Header from './header'
 import SideBar from './sidebar'
 import { useSwitchSideBar } from '../../store/useSwitchSideBar';

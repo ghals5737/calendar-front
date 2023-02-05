@@ -12,15 +12,6 @@ export const useUser = create<UserDataInfo>((set) => ({
         
     },
     createUser:(user)=> {
-        axios.post('/user',{
-            nickname:user.nickname,
-            email:user.email,
-            birthday:user.birthday,            
-            password:user.password
-        }).then((result)=>{
-            console.log("data>",result.data.body.data)
-            //userId=result.data.body.data.id
-            sessionStorage.setItem("nickName",result.data.body.data.nickName)
-        })                         
+                         
     },
 }));

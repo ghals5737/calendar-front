@@ -5,23 +5,42 @@ import { ko } from 'date-fns/esm/locale';
 import DatePicker from "react-datepicker";
 import { useUser } from "../../store/useUser"
 import userInfo from '../../types/userInfo';
-
+import axios from '../../api/axiosInstance';
+import { useCalendarInfo } from '../../store/useCalendarInfo';
+import calendarInfo from '../../types/calendarInfo';
+import { redirect } from 'next/dist/server/api-utils';
+import { PERMANENT_REDIRECT_STATUS } from 'next/dist/shared/lib/constants';
+import moment from 'moment'
 export default function Page(){
-
+    const {addCalendar}=useCalendarInfo(state=>state);
     const {createUser}=useUser(state=>state)
     const [nickname,setNickname]=useState('')    
     const [email,setEmail]=useState('') 
     const [birthday,setBirthday]=useState(new Date()) 
     const [password,setPassword]=useState('')   
     
-    const signup=()=>{
-        createUser({
+    const signup=()=>{        
+        axios.post('/user',{
             nickname:nickname,
             email:email,
             birthday:birthday,            
             password:password
-        }as userInfo
-        )
+        }).then((result)=>{            
+            console.log("result>",result.data.body.data)
+            sessionStorage.setItem("userId",result.data.body.data.userId)
+            sessionStorage.setItem("nickname",result.data.body.data.nickname) 
+            
+            addCalendar(
+                sessionStorage.getItem("userId")!
+                ,{
+                    calendarId:0,
+                    title:sessionStorage.getItem("nickname")!,
+                    description:sessionStorage.getItem("nickname")!+'님의 달력',
+                    color:'red',
+                    category:'def'
+            })     
+            window.location.href = "/";
+        })         
     }
     
     return(       

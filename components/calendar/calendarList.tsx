@@ -1,8 +1,11 @@
 import CalendarBox from "./calendarBox"
 import { useCalendarInfo } from "../../store/useCalendarInfo";
+import calendarInfo from "../../types/calendarInfo";
 
 function calendarList(){
     const {calendars}=useCalendarInfo(state=>state);
+
+    
 
     return (
         <ul className="">
@@ -16,9 +19,9 @@ function calendarList(){
                 </div>
             </div>
             {
-                calendars.map(calendar=>{
+                calendars.map((calendar,index)=>{
                     return(
-                        <CalendarBox calendar={calendar}></CalendarBox>
+                        <CalendarBox id={index} calendar={calendar}></CalendarBox>                        
                     )
                 })
             }

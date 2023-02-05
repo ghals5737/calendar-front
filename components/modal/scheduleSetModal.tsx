@@ -18,6 +18,7 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
     const [des,setDes]=useState('') 
     const [color,setColor]=useState('red')    
     
+    
     const close=()=>{        
         closeModal()
     }
@@ -31,7 +32,7 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
         console.log(moment(endDt).format('YYYYMMDD'))
         addSchedule(
             {
-            calendarId:1,
+            calendarId:Number(sessionStorage.getItem("calendarId")),
             startYmd:moment(startDt).format('YYYYMMDD'),
             endYmd:moment(endDt).format('YYYYMMDD'),    
             startDt:startDt,

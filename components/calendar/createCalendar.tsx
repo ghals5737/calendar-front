@@ -9,7 +9,7 @@ function createCalendar(){
     const [color, setColor] = useState('red');    
 
     const addCal=()=>{
-        addCalendar({
+        addCalendar(sessionStorage.getItem("userId")!,{
             calendarId:0,
             title:calendarTitle,
             description:calendarDes,
@@ -44,10 +44,10 @@ function createCalendar(){
                     <option value="" className="dark:bg-gray-500">
                         카테고리를 선택해주세요.
                     </option>
-                    <option value={calendarCategory} className="dark:bg-gray-500">개인</option>
-                    <option value={calendarCategory} className="dark:bg-gray-500">업무</option>
-                    <option value={calendarCategory} className="dark:bg-gray-500">취미</option>
-                    <option value={calendarCategory} className="dark:bg-gray-500">기타</option>
+                    <option value={"PRSN"} className="dark:bg-gray-500">개인</option>
+                    <option value={"WORK"} className="dark:bg-gray-500">업무</option>
+                    <option value={"COUPLE"} className="dark:bg-gray-500">커플</option>
+                    <option value={"TRIP"} className="dark:bg-gray-500">여행</option>
                     </select>
                 </div>
                 <div className="space-y-1">

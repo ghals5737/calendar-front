@@ -25,15 +25,10 @@ export const useScheduleList = create<scheduleListInfo>((set) => ({
     getScheduleList:(calendarId,startYmd,endYmd)=>{
         axios.get(`/schedule/calendar/${calendarId}?startYmd=${startYmd}&endYmd=${endYmd}`)
         .then((result)=>{
-            //console.log('data>',result.data.body.data)
+            console.log('scheuduleList>',result.data.body.data)
             set(()=>({
                 scheduleList:[...result.data.body.data]
             }))
         }) 
-<<<<<<< HEAD
     }
-=======
-                
-    },    
->>>>>>> 1946f1b76bf30543945094e06315ae4383aaad94
 }));
