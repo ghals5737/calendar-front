@@ -9,24 +9,23 @@ import { useCalendarInfo } from '../../store/useCalendarInfo';
 function header(){  
   //const [theme,setTheme]=useState('light')  
   const [isDarkMode, setDarkMode] = useState(false);
+  const [userId, setUserId] = useState<null|string>(null);
+  const [nickname, setNickname] = useState<null|string>(null);
   const {isAddCalendar,openAddCalendar,closeAddCalendar}=useSwitchSideBar(state=>state)  
   const pathname  = usePathname()
   const router= useRouter()  
   const {getCalendars}=useCalendarInfo(state=>state);
-  let userId: string | null=null
-  let nickname:string | null=null
-  let calendarId:string | null=null
+
   //const nickname = sessionStorage.getItem('nickname') : null;
   useEffect(()=>{
-    userId=sessionStorage.getItem("userId")
-    nickname=sessionStorage.getItem("nickname")
-    calendarId=sessionStorage.getItem("calendarId")
+    setUserId(sessionStorage.getItem("userId"))
+    setNickname(sessionStorage.getItem("nickname"))    
   },[])
   const logout=()=>{    
     if(typeof window !== 'undefined'){
-      window.sessionStorage.removeItem("userId")
-      window.sessionStorage.removeItem("nickname")
-      window.sessionStorage.removeItem("calendarId")    
+      sessionStorage.removeItem("userId")
+      sessionStorage.removeItem("nickname")
+      sessionStorage.removeItem("calendarId")    
     }
     window.location.href = "/"
   }
