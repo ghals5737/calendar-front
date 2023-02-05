@@ -1,3 +1,4 @@
+'use client';
 import CalendarBox from "./calendarBox"
 import { useCalendarInfo } from "../../store/useCalendarInfo";
 import calendarInfo from "../../types/calendarInfo";

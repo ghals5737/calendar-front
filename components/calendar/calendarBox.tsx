@@ -1,3 +1,4 @@
+'use client';
 import calendarInfo from "../../types/calendarInfo";
 import {useDaysInfo} from '../../store/useDaysInfo';
 import { useScheduleList } from '../../store/useScheduleList';

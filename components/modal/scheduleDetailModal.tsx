@@ -1,3 +1,4 @@
+'use client';
 import { Fragment } from "react";
 import { useDetailModal } from "../../store/useDetailModal";
 import scheduleInfo from "../../types/scheduleInfo";

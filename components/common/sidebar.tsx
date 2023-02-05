@@ -1,3 +1,4 @@
+'use client';
 import CalendarList from '../calendar/calendarList'
 
 function sidebar(){

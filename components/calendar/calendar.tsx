@@ -1,4 +1,4 @@
-
+'use client';
 import {useDate} from '../../store/useDate'
 import {useDaysInfo} from '../../store/useDaysInfo'
 import DayGrid from './dayGrid'

@@ -1,3 +1,4 @@
+'use client';
 import { useDetailModal } from '../../store/useDetailModal'
 import scheduleInfo from '../../types/scheduleInfo'
 import scheduleLayoutInfo from '../../types/scheduleLayoutInfo'

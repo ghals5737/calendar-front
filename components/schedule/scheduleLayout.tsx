@@ -1,3 +1,4 @@
+'use client';
 import { useScheduleList } from "../../store/useScheduleList"
 import scheduleLayoutInfo from '../../types/scheduleLayoutInfo'
 import daysInfo from '../../types/daysInfo'

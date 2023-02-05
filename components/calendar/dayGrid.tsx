@@ -1,3 +1,4 @@
+'use client';
 import daysInfo from '../../types/daysInfo'
 import React, {useState,useEffect} from 'react';
 import ScheduleSetModal from '../modal/scheduleSetModal';
