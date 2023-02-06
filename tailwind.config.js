@@ -53,7 +53,10 @@ module.exports = {
       zIndex: {
         '99': '99',
         '999':'999'
-      }  
+      },
+      backgroundImage: {
+        'naver-btn': "url('/img/naver-btn.png')",        
+      }
     },
   },
   plugins: [],

@@ -3,6 +3,7 @@ import axios from '../../api/axiosInstance';
 import { useCalendarInfo } from '../../store/useCalendarInfo';
 import calendarInfo from '../../types/calendarInfo';
 import {useState} from 'react';
+import NaverLogin from 'react-naver-login';
 
 export default function Page(){    
     const [email,setEmail]=useState('') 
@@ -30,11 +31,18 @@ export default function Page(){
                 </h2>   
                 <div className="mx-4 sm:mx-0">
                 <div className="mt-8">
-                    <span className="text-sm font-medium">SNS 로그인 추가예정</span>
-                    <div className="grid grid-cols-3 gap-3 mt-1">                    
+                    <span className="text-sm font-medium">SNS 로그인</span>
+                    <div className="grid grid-cols-3 gap-3 mt-1">   
+                    <NaverLogin 
+                        clientId="sdffdNNFDSjsddiosd"
+                        callbackUrl="http://127.0.0.1:3000/login"
+                        render={(props:any) => <div className='bg-orange-500 w-12 h-6' onClick={props.onClick}><i className='bg-naver-btn'>a</i></div>}
+                        onSuccess={(naverUser:any) => console.log(naverUser)}
+                        onFailure={(e:any) => console.error(e)}
+                    />
                     </div>
                 </div>
-                <div className="relative mt-7">
+                <div className="relative mt-4">
                     <div className="absolute inset-0 flex items-center">
                     <div
                         className="w-full border-t border-gray-500/30 dark:border-gray-500/70"
