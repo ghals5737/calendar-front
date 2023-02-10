@@ -6,15 +6,9 @@ import {Fragment} from 'react';
 
 export default function Page(){    
     return(       
-        <Fragment>
-            <Head>
-                <title>MINICAL</title>
-                <link rel="icon" href="../img/favicon.ico" />
-            </Head>
             <BasicLayout>            
                 <Calendar></Calendar>
             </BasicLayout>        
-        </Fragment>
     )
 }
   
