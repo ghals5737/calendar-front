@@ -88,3 +88,10 @@ main{
 .grid-col-end-8{
   grid-column-end: 8;
 }
+
+.naver-btn{  
+  /* width: 125px;
+  height: 50px;         */
+  /* position: relative; */
+  /* background-color: aquamarine; */
+}

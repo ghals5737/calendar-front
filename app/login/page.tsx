@@ -3,7 +3,10 @@ import axios from '../../api/axiosInstance';
 import { useCalendarInfo } from '../../store/useCalendarInfo';
 import calendarInfo from '../../types/calendarInfo';
 import {useState} from 'react';
-
+import Image from "next/image";
+import naverLogo from '../../img/naver-btn.png'
+import kakaoLogo from '../../img/kakao-btn.png'
+import googleLogo from '../../img/google-btn.png'
 export default function Page(){    
     const [email,setEmail]=useState('') 
     const [password,setPassword]=useState('')   
@@ -22,6 +25,10 @@ export default function Page(){
 
     }
 
+    const naverLogin=()=>{
+        alert('naver')
+    }
+
     return(
         <div className="flex justify-center px-6 pb-16 mt-20 sm:mt-32 sm:px-0">
             <div className="w-full max-w-md">                
@@ -32,7 +39,15 @@ export default function Page(){
                 <div className="mt-8">
                     <span className="text-sm font-medium">SNS 로그인</span>
                     <div className="grid grid-cols-3 gap-3 mt-1">  
-                   
+                        <button onClick={naverLogin}>
+                            <Image src={naverLogo} alt="blabla Logo" />                            
+                        </button>
+                        <button onClick={naverLogin}>
+                            <Image src={kakaoLogo} alt="blabla Logo" />                            
+                        </button>
+                        <button onClick={naverLogin}>
+                            <Image src={googleLogo} alt="blabla Logo" />                            
+                        </button>
                     </div>
                 </div>
                 <div className="relative mt-4">
