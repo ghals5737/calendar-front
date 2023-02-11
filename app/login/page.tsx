@@ -2,15 +2,43 @@
 import axios from '../../api/axiosInstance';
 import { useCalendarInfo } from '../../store/useCalendarInfo';
 import calendarInfo from '../../types/calendarInfo';
-import {useState} from 'react';
+import {useState,useEffect } from 'react';
 import Image from "next/image";
 import naverLogo from '../../img/naver-btn.png'
 import kakaoLogo from '../../img/kakao-btn.png'
 import googleLogo from '../../img/google-btn.png'
+import NaverLogin from '../../components/sns/NaverLogin';
+import {getNaverInfo,NaverCallback} from '../../components/sns/NaverLogin';
+import queryString from "query-string";
+import {usePathname,useSearchParams} from 'next/navigation';
+import { useSnsLoginInfo } from "../../store/useSnsLoginInfo";
+import {useRouter} from 'next/navigation'
+
 export default function Page(){    
     const [email,setEmail]=useState('') 
     const [password,setPassword]=useState('')   
-    const {initCalendars}=useCalendarInfo(state=>state);
+    let userData = getNaverInfo();
+    const {initCalendars}=useCalendarInfo(state=>state);       
+    const location = window.location        
+    //const query = queryString.parse(window.location.hash);
+    const router=useSearchParams()
+    const {accessToken,snsType}=useSnsLoginInfo()
+    const query = queryString.parse(location.search);
+    
+  useEffect(() => {
+    const userData = getNaverInfo(); 
+    alert("??")   
+    console.log("query",queryString.parse(location.hash));
+    console.log("pathname",router)
+    if (queryString.parse(location.hash)) {     
+        //console.log("query",queryString.parse(location.hash));
+    }
+
+    if (query.naver) {
+      NaverCallback();
+    }
+  }, [router]);
+
 
     const login=()=>{        
         axios.post('/user/login',{
@@ -25,8 +53,9 @@ export default function Page(){
 
     }
 
-    const naverLogin=()=>{
-        alert('naver')
+    const check=()=>{
+        console.log("accessToken",accessToken)
+        console.log("snsType",snsType)
     }
 
     return(
@@ -39,13 +68,17 @@ export default function Page(){
                 <div className="mt-8">
                     <span className="text-sm font-medium">SNS 로그인</span>
                     <div className="grid grid-cols-3 gap-3 mt-1">  
-                        <button onClick={naverLogin}>
-                            <Image src={naverLogo} alt="blabla Logo" />                            
-                        </button>
-                        <button onClick={naverLogin}>
+                        <NaverLogin
+                            token={"dLiylAdbHmAPNv4dvQBQ"}
+                            callbackUrl={"http://localhost:3000/login"}
+                            render={() =><button>                            
+                                            <Image src={naverLogo} alt="blabla Logo" />                            
+                                        </button>}
+                        />                        
+                        <button onClick={check}>
                             <Image src={kakaoLogo} alt="blabla Logo" />                            
                         </button>
-                        <button onClick={naverLogin}>
+                        <button>
                             <Image src={googleLogo} alt="blabla Logo" />                            
                         </button>
                     </div>
