@@ -9,35 +9,34 @@ import kakaoLogo from '../../img/kakao-btn.png'
 import googleLogo from '../../img/google-btn.png'
 import NaverLogin from '../../components/sns/NaverLogin';
 import {getNaverInfo,NaverCallback} from '../../components/sns/NaverLogin';
+import KaKaoLogin from '../../components/sns/KaKaoLogin';
+import GoogleLogin from '../../components/sns/GoogleLogin';
 import queryString from "query-string";
 import {usePathname,useSearchParams} from 'next/navigation';
 import { useSnsLoginInfo } from "../../store/useSnsLoginInfo";
 import {useRouter} from 'next/navigation'
+import jwt_decode from "jwt-decode";
 
 export default function Page(){    
     const [email,setEmail]=useState('') 
-    const [password,setPassword]=useState('')   
-    let userData = getNaverInfo();
-    const {initCalendars}=useCalendarInfo(state=>state);       
-    const location = window.location        
-    //const query = queryString.parse(window.location.hash);
+    const [password,setPassword]=useState('')       
+    const {initCalendars}=useCalendarInfo(state=>state);           
     const router=useSearchParams()
     const {accessToken,snsType}=useSnsLoginInfo()
-    const query = queryString.parse(location.search);
-    
-  useEffect(() => {
-    const userData = getNaverInfo(); 
-    alert("??")   
-    console.log("query",queryString.parse(location.hash));
-    console.log("pathname",router)
-    if (queryString.parse(location.hash)) {     
-        //console.log("query",queryString.parse(location.hash));
-    }
+      
+    useEffect(() => {
+        const userData = getNaverInfo();         
+        // console.log("query",queryString.parse(location.hash));
+        // console.log("userData",userData)
+        if (userData) {     
+            //console.log("query",queryString.parse(location.hash));
+            console.log("userData",userData)
+        }
 
-    if (query.naver) {
-      NaverCallback();
-    }
-  }, [router]);
+        // if (query.naver) {
+        //     NaverCallback();
+        // }
+    }, []);
 
 
     const login=()=>{        
@@ -53,10 +52,25 @@ export default function Page(){
 
     }
 
-    const check=()=>{
-        console.log("accessToken",accessToken)
-        console.log("snsType",snsType)
+    const successHandlerKaKao = (data:any) => {
+        console.log("data",data);
+        
     }
+    
+    const failHandlerKaKao = (err:any) => {
+        console.log(err)
+    }
+
+
+    const successHandlerGoogle = (data:any) => {
+        const userInfo=jwt_decode(data.credential)        
+        console.log("userInfo",userInfo);
+        
+      }
+    
+      const failHandlerGoogle = (err) => {
+        console.log(err)
+      }
 
     return(
         <div className="flex justify-center px-6 pb-16 mt-20 sm:mt-32 sm:px-0">
@@ -74,13 +88,24 @@ export default function Page(){
                             render={() =><button>                            
                                             <Image src={naverLogo} alt="blabla Logo" />                            
                                         </button>}
-                        />                        
-                        <button onClick={check}>
-                            <Image src={kakaoLogo} alt="blabla Logo" />                            
-                        </button>
-                        <button>
-                            <Image src={googleLogo} alt="blabla Logo" />                            
-                        </button>
+                        />
+                        <KaKaoLogin 
+                            token={"da1341fca7194ea3f896379a7993384f"} 
+                            successCallback = {successHandlerKaKao}
+                            fail = {failHandlerKaKao}
+                            render ={() =><button>
+                                                <Image src={kakaoLogo} alt="blabla Logo" />                            
+                                            </button>}
+                        />    
+                        <GoogleLogin 
+                            token={"684748789705-419aln9eqrnfo58vno506sr69rs3f58i.apps.googleusercontent.com"} 
+                            success = {successHandlerGoogle}
+                            fail = {failHandlerGoogle}
+                            render ={() => <button>
+                                                <Image src={googleLogo} alt="blabla Logo" />                            
+                                            </button>}
+                        />
+                        
                     </div>
                 </div>
                 <div className="relative mt-4">

@@ -137,8 +137,12 @@ export const NaverCallback = async () => {
           `${window.location.origin}` +
             `${window.location.pathname}` +
             `${location.hash}`
-        );
-
+        );     
+        opener.location.reload(
+          // `${window.location.origin}` +
+          //   `${window.location.pathname}` +
+          //   `${location.hash}`
+        )   
         window.close();
       } else {
         window.location.replace(redirect);
