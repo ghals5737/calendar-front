@@ -4,6 +4,7 @@ interface userInfo {
     nickname:string;
     birthday:Date;
     password:string;   
+    snsType:string;
 }  
 
 export default userInfo;

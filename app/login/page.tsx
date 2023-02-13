@@ -31,6 +31,7 @@ export default function Page(){
         if (userData) {     
             //console.log("query",queryString.parse(location.hash));
             console.log("userData",userData)
+            snsLogin(userData.email,'NAVER') 
         }
 
         // if (query.naver) {
@@ -52,9 +53,22 @@ export default function Page(){
 
     }
 
+    const snsLogin=(email:string,snsType:string)=>{        
+        axios.post('/user/sns-login',{
+            email:email,
+            snsType:snsType
+        }).then((result)=>{            
+            sessionStorage.setItem("userId",result.data.body.data.userId)
+            sessionStorage.setItem("nickname",result.data.body.data.nickname)
+            initCalendars(sessionStorage.getItem("userId")!) 
+            window.location.href = "/";
+        })
+
+    }
+
     const successHandlerKaKao = (data:any) => {
         console.log("data",data);
-        
+        snsLogin(data.email,'KAKAO')        
     }
     
     const failHandlerKaKao = (err:any) => {
@@ -65,10 +79,10 @@ export default function Page(){
     const successHandlerGoogle = (data:any) => {
         const userInfo=jwt_decode(data.credential)        
         console.log("userInfo",userInfo);
-        
+        snsLogin(userInfo.email,'GOOGLE')                
       }
     
-      const failHandlerGoogle = (err) => {
+      const failHandlerGoogle = (err:any) => {
         console.log(err)
       }
 
