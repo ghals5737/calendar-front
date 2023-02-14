@@ -11,11 +11,10 @@ import NaverLogin from '../../components/sns/NaverLogin';
 import {getNaverInfo,NaverCallback} from '../../components/sns/NaverLogin';
 import KaKaoLogin from '../../components/sns/KaKaoLogin';
 import GoogleLogin from '../../components/sns/GoogleLogin';
-import queryString from "query-string";
 import {usePathname,useSearchParams} from 'next/navigation';
 import { useSnsLoginInfo } from "../../store/useSnsLoginInfo";
 import {useRouter} from 'next/navigation'
-import jwt_decode from "jwt-decode";
+import decode from "jwt-decode";
 
 export default function Page(){    
     const [email,setEmail]=useState('') 
@@ -77,7 +76,7 @@ export default function Page(){
 
 
     const successHandlerGoogle = (data:any) => {
-        const userInfo=jwt_decode(data.credential)        
+        const userInfo=decode<any>(data.credential)        
         console.log("userInfo",userInfo);
         snsLogin(userInfo.email,'GOOGLE')                
       }
