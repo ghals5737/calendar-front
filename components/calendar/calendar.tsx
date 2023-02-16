@@ -42,21 +42,21 @@ function calendar(){
     return(        
         <div className="calendarMain">
             <div className="mt-1">
-                <button onClick={resetToday} className="items-center justify-center mr-2 border border-gray-300 rounded-md ml-11 h-9 w-14 text-2xs hover:bg-gray-50">
+                <button onClick={resetToday} className="items-center justify-center mr-2 border border-gray-300 rounded-md ml-11 h-9 w-14 font-bold text-lg text-gray-700 hover:bg-gray-50">
                 오늘
                 </button>
                 <button onClick={decreaseMonth} className='mx-3 text-2xl font-bold text-zinc-500'>{`<`}</button>
                 <button onClick={increaseMonth} className='mr-5 text-2xl font-bold text-zinc-500'>{`>`}</button>
-                <time className='text-2xl' dateTime="2019-02"> {`${year}년 ${month}월`} </time>
+                <time className='font-bold text-lg text-gray-700' dateTime="2019-02"> {`${year}년 ${month}월`} </time>
             </div>
             <div className="grid grid-cols-7">
-                <div className='pl-3 '><p className='relative bottom-3'>일</p></div>
-                <div className='pl-3 '><p className='relative bottom-3'>월</p></div>
-                <div className='pl-3 '><p className='relative bottom-3'>화</p></div>
-                <div className='pl-3 '><p className='relative bottom-3'>수</p></div>
-                <div className='pl-3 '><p className='relative bottom-3'>목</p></div>
-                <div className='pl-3 '><p className='relative bottom-3'>금</p></div>
-                <div className='pl-3 '><p className='relative bottom-3'>토</p></div>
+                <div className='pl-3 font-bold text-lg text-gray-700'><p className='relative bottom-3'>일</p></div>
+                <div className='pl-3 font-bold text-lg text-gray-700'><p className='relative bottom-3'>월</p></div>
+                <div className='pl-3 font-bold text-lg text-gray-700'><p className='relative bottom-3'>화</p></div>
+                <div className='pl-3 font-bold text-lg text-gray-700'><p className='relative bottom-3'>수</p></div>
+                <div className='pl-3 font-bold text-lg text-gray-700'><p className='relative bottom-3'>목</p></div>
+                <div className='pl-3 font-bold text-lg text-gray-700'><p className='relative bottom-3'>금</p></div>
+                <div className='pl-3 font-bold text-lg text-gray-700'><p className='relative bottom-3'>토</p></div>
             </div>
             <div className="grid grid-rows-5 ">                   
                 {days.map((week,index)=>{   
@@ -76,7 +76,7 @@ function calendar(){
                                     {
                                         week.map((day)=>{
                                             return(                                
-                                                <p key={day.id} className='pt-3 pl-3 z-99'>{day.day}</p>                                
+                                                <p key={day.id} className='pt-3 pl-3 z-99 font-bold text-base text-gray-700'>{day.day}</p>                                
                                             )                                            
                                         })
                                     }                                    

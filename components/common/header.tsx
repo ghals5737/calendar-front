@@ -114,7 +114,7 @@ function header(){
             </div>
           </Fragment>:
           <div className='relative flex'>
-            <label>{nickname}</label>
+            <label className='text-lg text-gray-700'>{nickname}</label>
             <button 
             className="ml-2 hidden h-[35px] w-[85px] items-center justify-center rounded-3xl border border-gray-500/30 bg-white text-center text-xs font-medium text-gray-900 shadow-sm hover:bg-gray-100 focus:outline-none dark:border-gray-500/70 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 sm:flex lg:ml-10"
             onClick={logout}>

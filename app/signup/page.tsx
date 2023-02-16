@@ -1,5 +1,5 @@
 'use client'
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from 'date-fns/esm/locale';
 import DatePicker from "react-datepicker";
@@ -11,6 +11,19 @@ import calendarInfo from '../../types/calendarInfo';
 import { redirect } from 'next/dist/server/api-utils';
 import { PERMANENT_REDIRECT_STATUS } from 'next/dist/shared/lib/constants';
 import moment from 'moment'
+import Image from "next/image";
+import naverLogo from '../../img/naver-btn.png'
+import kakaoLogo from '../../img/kakao-btn.png'
+import googleLogo from '../../img/google-btn.png'
+import NaverLogin from '../../components/sns/NaverLogin';
+import {getNaverInfo,NaverCallback} from '../../components/sns/NaverLogin';
+import KaKaoLogin from '../../components/sns/KaKaoLogin';
+import GoogleLogin from '../../components/sns/GoogleLogin';
+import {usePathname,useSearchParams} from 'next/navigation';
+import { useSnsLoginInfo } from "../../store/useSnsLoginInfo";
+import {useRouter} from 'next/navigation'
+import decode from "jwt-decode";
+
 export default function Page(){
     const {addCalendar}=useCalendarInfo(state=>state);
     const {createUser}=useUser(state=>state)
@@ -42,6 +55,67 @@ export default function Page(){
             window.location.href = "/";
         })         
     }
+
+    const snsSignup=(email:string,snsType:string,birthday:Date|null)=>{        
+        axios.post('/user/sns',{            
+            email:email,
+            snsType:snsType,            
+            birthday:birthday
+        }).then((result)=>{            
+            console.log("result>",result.data.body.data)
+            sessionStorage.setItem("userId",result.data.body.data.userId)
+            sessionStorage.setItem("nickname",result.data.body.data.nickname) 
+            
+            addCalendar(
+                sessionStorage.getItem("userId")!
+                ,{
+                    calendarId:0,
+                    title:sessionStorage.getItem("nickname")!,
+                    description:sessionStorage.getItem("nickname")!+'님의 달력',
+                    color:'red',
+                    category:'def'
+            })     
+            window.location.href = "/";
+        })         
+
+    }
+
+    useEffect(() => {
+        const userData = getNaverInfo();         
+        // console.log("query",queryString.parse(location.hash));
+        // console.log("userData",userData)
+        if (userData) {     
+            //console.log("query",queryString.parse(location.hash));
+            console.log("userData",userData)
+            snsSignup(userData.email,'NAVER',null) 
+        }
+
+        // if (query.naver) {
+        //     NaverCallback();
+        // }
+    }, []);
+
+    
+
+    const successHandlerKaKao = (data:any) => {
+        console.log("data",data);
+        snsSignup(data.email,'KAKAO',null)        
+    }
+    
+    const failHandlerKaKao = (err:any) => {
+        console.log(err)
+    }
+
+
+    const successHandlerGoogle = (data:any) => {
+        const userInfo=decode<any>(data.credential)        
+        console.log("userInfo",userInfo);
+        snsSignup(userInfo.email,'GOOGLE',null)                
+      }
+    
+      const failHandlerGoogle = (err:any) => {
+        console.log(err)
+      }
     
     return(       
         <div className="flex justify-center px-6 pb-16 mt-20 sm:mt-32 sm:px-0">
@@ -51,8 +125,31 @@ export default function Page(){
                 </h2>                
                 <div className="mx-4 sm:mx-0">
                 <div className="mt-8">
-                    <span className="text-sm font-medium">SNS 회원가입 추가예정</span>
+                    <span className="text-sm font-medium">SNS 회원가입</span>
                     <div className="grid grid-cols-3 gap-3 mt-1">
+                        <NaverLogin
+                                token={"dLiylAdbHmAPNv4dvQBQ"}
+                                callbackUrl={"http://localhost:3000/login"}
+                                render={() =><button>                            
+                                                <Image src={naverLogo} alt="blabla Logo" />                            
+                                            </button>}
+                        />
+                        <KaKaoLogin 
+                            token={"da1341fca7194ea3f896379a7993384f"} 
+                            successCallback = {successHandlerKaKao}
+                            fail = {failHandlerKaKao}
+                            render ={() =><button>
+                                                <Image src={kakaoLogo} alt="blabla Logo" />                            
+                                            </button>}
+                        />    
+                        <GoogleLogin 
+                            token={"684748789705-419aln9eqrnfo58vno506sr69rs3f58i.apps.googleusercontent.com"} 
+                            success = {successHandlerGoogle}
+                            fail = {failHandlerGoogle}
+                            render ={() => <button>
+                                                <Image src={googleLogo} alt="blabla Logo" />                            
+                                            </button>}
+                        />
                     
                     </div>
                 </div>
