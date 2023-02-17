@@ -6,7 +6,7 @@ import { useSnsLoginInfo } from "../../store/useSnsLoginInfo";
 let naverLogin;
 
 const NaverLogin = ({ token, callbackUrl, render }) => {
-  window.name = "opener";
+  //window.name = "opener";
   const {setAccessToken,setSnsType}=useSnsLoginInfo()
 
   const setting_naver = () => {
@@ -40,6 +40,7 @@ const NaverLogin = ({ token, callbackUrl, render }) => {
 
   useEffect (() => {
     const fetchData=async ()=>{
+      window.name = "opener";
       await setting_naver();
       await setting_jquery();
   
