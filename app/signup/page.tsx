@@ -19,9 +19,6 @@ import NaverLogin from '../../components/sns/NaverLogin';
 import {getNaverInfo,NaverCallback} from '../../components/sns/NaverLogin';
 import KaKaoLogin from '../../components/sns/KaKaoLogin';
 import GoogleLogin from '../../components/sns/GoogleLogin';
-import {usePathname,useSearchParams} from 'next/navigation';
-import { useSnsLoginInfo } from "../../store/useSnsLoginInfo";
-import {useRouter} from 'next/navigation'
 import decode from "jwt-decode";
 
 export default function Page(){
@@ -81,18 +78,12 @@ export default function Page(){
     }
 
     useEffect(() => {
-        const userData = getNaverInfo();         
-        // console.log("query",queryString.parse(location.hash));
-        // console.log("userData",userData)
-        if (userData) {     
-            //console.log("query",queryString.parse(location.hash));
+        const userData = getNaverInfo();       
+        
+        if (userData) {               
             console.log("userData",userData)
             snsSignup(userData.email,'NAVER',null) 
-        }
-
-        // if (query.naver) {
-        //     NaverCallback();
-        // }
+        }       
     }, []);
 
     
