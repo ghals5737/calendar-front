@@ -92,7 +92,7 @@ export default function Page(){
 
     const successHandlerKaKao = (data:any) => {
         console.log("data",data);
-        snsSignup(data.email,'KAKAO',null)        
+        snsSignup(data.kakao_account.email,'KAKAO',null)        
     }
     
     const failHandlerKaKao = (err:any) => {
@@ -122,7 +122,7 @@ export default function Page(){
                     <div className="grid grid-cols-3 gap-3 mt-1">
                         <NaverLogin
                                 token={"dLiylAdbHmAPNv4dvQBQ"}
-                                callbackUrl={"http://localhost:3000/login"}
+                                callbackUrl={"http://localhost:3000/callback"}
                                 render={() =><button>                            
                                                 <Image src={naverLogo} alt="blabla Logo" />                            
                                             </button>}

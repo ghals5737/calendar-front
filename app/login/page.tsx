@@ -63,7 +63,7 @@ export default function Page(){
 
     const successHandlerKaKao = (data:any) => {
         console.log("data",data);
-        snsLogin(data.email,'KAKAO')        
+        snsLogin(data.kakao_account.email,'KAKAO')        
     }
     
     const failHandlerKaKao = (err:any) => {
