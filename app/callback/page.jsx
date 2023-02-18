@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
+'use client'
+
+import {useState,useEffect } from 'react';
 import queryString from "query-string";
 import { useSnsLoginInfo } from "../../store/useSnsLoginInfo";
-
 let naverLogin;
-
-const NaverLogin = ({ token, callbackUrl, render }) => {
-  
-  const {setEmail,setSnsType}=useSnsLoginInfo()
+export default function Page( token, callbackUrl, render ){     
+      
+    const {setEmail,setSnsType}=useSnsLoginInfo()
 
   const setting_naver = () => {
     return new Promise((resolve, reject) => {
@@ -68,25 +68,30 @@ const NaverLogin = ({ token, callbackUrl, render }) => {
       });
       naverLogin.init();
 
+      naverLogin.getLoginStatus(function (status) {
+        if (status) {
+          let userData = getNaverInfo();
+          if (userData) {
+            console.log("windowOpen", window.opener);          
+            // if (window.opener!=null) {
+            //   window.opener.close();        
+            // }else{
+            //   //window.opener.location.reload(); // 사용자 정보 갱신
+            //   window.close(); // 팝업 창 닫기  
+            // }
+            setEmail(userData.email)
+            window.close()
+          }
+        }
+      });
+
       
     }
     fetchData()   
   }, []);
 
   return (
-    <div id="naverIdLogin" onClick={login}>
-      <a id="naverIdLogin_loginButton" className="sns-naver-container">
-        {render ? (
-          render()
-        ) : (
-          <img
-            className="sns-naver-img"
-            width="220px"
-            src="https://static.nid.naver.com/oauth/big_g.PNG"
-          />
-        )}
-      </a>
-    </div>
+    <div></div>
   );
 };
 
@@ -159,6 +164,4 @@ export const NaverCallback = async () => {
       console.log("callback 처리에 실패하였습니다.");
     }
   });
-};
-
-export default NaverLogin;
+}

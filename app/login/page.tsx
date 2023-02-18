@@ -21,22 +21,18 @@ export default function Page(){
     const [password,setPassword]=useState('')       
     const {initCalendars}=useCalendarInfo(state=>state);           
     const router=useSearchParams()
-    const {accessToken,snsType}=useSnsLoginInfo()
+    const {snsEmail,snsType}=useSnsLoginInfo()
       
     useEffect(() => {
-        const userData = getNaverInfo();         
-        // console.log("query",queryString.parse(location.hash));
-        // console.log("userData",userData)
+        const userData = getNaverInfo();       
+        //alert("!!")  
+        // console.log("query",queryString.parse(location.hash));        
         if (userData) {     
             //console.log("query",queryString.parse(location.hash));
             console.log("userData",userData)
-            snsLogin(userData.email,'NAVER') 
+            snsLogin(userData.email,'NAVER')             
         }
-
-        // if (query.naver) {
-        //     NaverCallback();
-        // }
-    }, []);
+    }, [snsEmail]);
 
 
     const login=()=>{        
@@ -97,7 +93,7 @@ export default function Page(){
                     <div className="grid grid-cols-3 gap-3 mt-1">  
                         <NaverLogin
                             token={"dLiylAdbHmAPNv4dvQBQ"}
-                            callbackUrl={"http://localhost:3000/login"}
+                            callbackUrl={"http://localhost:3000/callback"}
                             render={() =><button>                            
                                             <Image src={naverLogo} alt="blabla Logo" />                            
                                         </button>}

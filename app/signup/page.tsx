@@ -19,6 +19,7 @@ import NaverLogin from '../../components/sns/NaverLogin';
 import {getNaverInfo,NaverCallback} from '../../components/sns/NaverLogin';
 import KaKaoLogin from '../../components/sns/KaKaoLogin';
 import GoogleLogin from '../../components/sns/GoogleLogin';
+import { useSnsLoginInfo } from "../../store/useSnsLoginInfo";
 import decode from "jwt-decode";
 
 export default function Page(){
@@ -28,6 +29,7 @@ export default function Page(){
     const [email,setEmail]=useState('') 
     const [birthday,setBirthday]=useState(new Date()) 
     const [password,setPassword]=useState('')   
+    const {snsEmail,snsType}=useSnsLoginInfo()
     
     const signup=()=>{        
         axios.post('/user',{
@@ -84,7 +86,7 @@ export default function Page(){
             console.log("userData",userData)
             snsSignup(userData.email,'NAVER',null) 
         }       
-    }, []);
+    }, [snsEmail]);
 
     
 

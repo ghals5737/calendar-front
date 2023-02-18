@@ -1,7 +1,7 @@
 interface snsLoginInfo {    
-   accessToken:string,
+   snsEmail:string,
    snsType:string,
-   setAccessToken(accessToken:string):void,
+   setEmail(email:string):void,
    setSnsType(snsType:string):void,
 }  
 

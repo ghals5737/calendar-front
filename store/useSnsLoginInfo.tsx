@@ -2,11 +2,11 @@ import create from 'zustand'
 import snsLoginInfo from '../types/snsLoginInfo';
 
 export const useSnsLoginInfo = create<snsLoginInfo>((set) => ({
-  accessToken:'',
+    snsEmail:'',
   snsType:'',
-  setAccessToken:(accessToken)=>{
+  setEmail:(snsEmail)=>{
     set(()=>({
-        accessToken:accessToken
+        snsEmail:snsEmail
     }))
   },
   setSnsType:(snsType)=>{
