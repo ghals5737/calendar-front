@@ -22,6 +22,23 @@ export const useScheduleList = create<scheduleListInfo>((set) => ({
             }))
         })                 
     },
+    updateSchedule:(schedule)=>{    
+        axios.put('/schedule',{
+            scheduleId:schedule.scheduleId,
+            startYmd:schedule.startYmd,
+            endYmd:schedule.endYmd,
+            startDt:schedule.startDt,
+            endDt:schedule.endDt,
+            title:schedule.title,
+            des:schedule.des,
+            color:schedule.color            
+        }).then((data)=>{
+            console.log('data>',data)
+            set((state)=>({
+                scheduleList:[...state.scheduleList,schedule]            
+            }))
+        })                 
+    },
     getScheduleList:(calendarId,startYmd,endYmd)=>{
         axios.get(`/schedule/calendar/${calendarId}?startYmd=${startYmd}&endYmd=${endYmd}`)
         .then((result)=>{

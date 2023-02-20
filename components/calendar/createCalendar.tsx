@@ -1,7 +1,26 @@
 'use client';
 import {useState} from 'react';
 import { useCalendarInfo } from "../../store/useCalendarInfo";
-
+const COLORS = [
+    { name: "빨강", value: "red" },
+    { name: "주황", value: "orange" },
+    { name: "초록", value: "green" },
+    { name: "파랑", value: "blue" },
+    { name: "보라", value: "purple" },
+    { name: "분홍", value: "pink" },
+  ];
+  function ColorButton({ color, onClick}:{color:any,onClick:any}) {
+    return (
+      <button
+        type="button"
+        onClick={onClick}
+        className={`rounded-full w-5 h-5 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          color === "white" ? "border-gray-300" : `bg-${color}-500`
+        }`}
+        style={color === "white" ? { border: "1px solid" } : {}}
+      ></button>
+    );
+  }
 function createCalendar(){
     const {addCalendar}=useCalendarInfo(state=>state);
     const [calendarTitle, setCalendarTitle] = useState('');
@@ -20,103 +39,95 @@ function createCalendar(){
     }
 
     return(
-        <div
-        className="flex-auto w-full min-w-0 lg:static lg:max-h-full lg:overflow-visible"
-        >
-        <div className="w-1/3 space-y-10 pt-11 pl-11 ">
-            <div className="space-y-2">
-            <h3 className="text-xl font-medium sm:text-3xl sm:leading-10">
-                새 캘린더 만들기
-            </h3>
-            </div>            
-            <div className="space-y-12 sm:space-y-14">
-                <div className="grid grid-cols-1 gap-y-7">
-                <div className="space-y-1">
-                    <label                    
-                    className="text-sm font-medium text-gray-700 dark:text-gray-300"
-                    >테마
-                    </label>
-                    <select
-                    id="categoryCode"                    
-                    className="block w-full pl-3 pr-10 text-base rounded-md shadow-sm border-gray-500/30 placeholder-gray-500/80 focus:border-gray-500 focus:outline-none focus:ring-0 dark:bg-gray-500/20"
-                    name="categoryCode"
-                    onChange={(e)=>{setCalendarCategory(e.target.value)}}
-                    >
-                    <option value="" className="dark:bg-gray-500">
-                        카테고리를 선택해주세요.
-                    </option>
-                    <option value={"PRSN"} className="dark:bg-gray-500">개인</option>
-                    <option value={"WORK"} className="dark:bg-gray-500">업무</option>
-                    <option value={"COUPLE"} className="dark:bg-gray-500">커플</option>
-                    <option value={"TRIP"} className="dark:bg-gray-500">여행</option>
-                    </select>
-                </div>
-                <div className="space-y-1">
-                    <label                    
-                    className="text-sm font-medium text-gray-700 dark:text-gray-300"
-                    >제목</label>
-                    <input
-                    type="text"
-                    id="title"
-                    placeholder="제목을 입력해주세요."
-                    className="block w-full pl-3 pr-10 text-base border rounded-md shadow-sm appearance-none border-gray-500/30 placeholder-gray-500/80 focus:border-gray-500 focus:outline-none focus:ring-0 dark:bg-gray-500/20"
-                    name="title"
-                    value={calendarTitle}
-                    onChange={(e)=>{setCalendarTitle(e.target.value)}}
-                    />
-                </div>                
-                <div className="space-y-1">
-                    <label                    
-                    className="text-sm font-medium text-gray-700 dark:text-gray-300"
-                    >본문</label
-                    >
-                    <div
-                    className="relative z-0 border rounded-md shadow-sm remirror-theme border-gray-500/30 dark:border-gray-500/70"
-                    >                
-                    <textarea 
-                    className="block p-2.5 w-full h-48" 
-                    value={calendarDes}
-                    onChange={(e)=>{setCalendarDes(e.target.value)}}
-                    placeholder="내용을 입력해주세요">                        
-                    </textarea>
-                    <div
-                    ></div>
-                    <div
-                    ></div>
-                    <div
-                        className="remirror-floating-popover"                       
-                    ></div>
-                    </div>
-                </div>
-                <div className='space-y-1'>                
-                    <div>                                            
-                        <span className={`rounded-full w-5 h-5 bg-${color}-500 inline-block`}></span> 
-                    </div> 
-                    <div className='mt-2'>     
-                        <span onClick={()=>setColor('red')} className='inline-block w-5 h-5 mx-2 bg-red-500 rounded-full'></span>
-                        <span onClick={()=>setColor('orange')} className='inline-block w-5 h-5 mx-2 bg-orange-500 rounded-full'></span>
-                        <span onClick={()=>setColor('green')} className='inline-block w-5 h-5 mx-2 bg-green-500 rounded-full'></span>
-                        <span onClick={()=>setColor('blue')} className='inline-block w-5 h-5 mx-2 bg-blue-500 rounded-full'></span>
-                        <span onClick={()=>setColor('purple')} className='inline-block w-5 h-5 mx-2 bg-purple-500 rounded-full'></span>
-                        <span onClick={()=>setColor('pink')} className='inline-block w-5 h-5 mx-2 bg-pink-500 rounded-full'></span> 
-                    </div> 
-                </div>                
-                </div>
-                <div className="flex justify-center mt-5 gap-x-3 sm:justify-end">
-                <button                    
-                    className="w-20 px-4 py-2 text-sm font-medium bg-white border rounded-md shadow-sm border-gray-500/30 hover:bg-gray-100 focus:outline-none dark:border-gray-500/70 dark:bg-gray-700 dark:hover:bg-gray-600"
-                >
-                    취소</button
-                ><button
-                    onClick={addCal}
-                    className="inline-flex items-center px-8 py-2 space-x-2 text-sm font-semibold leading-6 text-white bg-blue-500 rounded-md shadow-sm hover:bg-blue-600 disabled:bg-blue-500 disabled:opacity-40"                    
-                >
-                    등록
-                </button>
-                </div>
-            </div>            
-        </div>       
-        </div>
+        <div className="bg-white p-6 w-96 rounded-md shadow-md">
+        <h3 className="text-lg font-medium text-gray-900 mb-6">
+          새 캘린더 만들기
+        </h3>       
+          <div className="mb-4">
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              htmlFor="theme"
+            >
+              테마
+            </label>
+            <select
+              id="theme"
+              name="theme"             
+              onChange={(event) => setCalendarCategory(event.target.value)}
+              className="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:bg-gray-100"
+            >
+              <option value="">카테고리를 선택해주세요.</option>
+              <option value={"PRSN"} className="dark:bg-gray-500">개인</option>
+            <option value={"WORK"} className="dark:bg-gray-500">업무</option>
+            <option value={"COUPLE"} className="dark:bg-gray-500">커플</option>
+            <option value={"TRIP"} className="dark:bg-gray-500">여행</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-sm font-medium text-gray-700 mb-1"
+              htmlFor="title"
+            >
+              제목
+            </label><input
+         type="text"
+         id="title"
+            name="title"
+            value={calendarTitle}
+            onChange={(event) => setCalendarTitle(event.target.value)}
+         className="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:bg-gray-100"
+         placeholder="제목을 입력해주세요."
+       />
+</div>
+<div className="mb-4">
+<label
+         className="block text-sm font-medium text-gray-700 mb-1"
+         htmlFor="description"
+       >
+본문
+</label>
+<textarea
+id="description"
+name="description"
+value={calendarDes}
+onChange={(event) => setCalendarDes(event.target.value)}
+className="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 dark:bg-gray-100"
+placeholder="내용을 입력해주세요."
+></textarea>
+</div>
+<div className="mb-4">
+<label
+         className="block text-sm font-medium text-gray-700 mb-1"
+         htmlFor="color"
+       >
+색상
+</label>
+<div className="flex items-center">
+{COLORS.map((color) => (
+<ColorButton
+key={color.value}
+color={color.value}
+onClick={() => setColor(color.value)}
+/>
+))}
+</div>
+</div>
+<div className="flex justify-end">
+<button
+         type="button"
+         className="px-4 py-2 border rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-100 focus:outline-none dark:bg-gray-100 dark:hover:bg-gray-200 dark:text-gray-500 dark:border-gray-300 mr-2"
+       >
+취소
+</button>
+<button
+type="submit"
+className="px-4 py-2 border rounded-md text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-blue-500 disabled:opacity-50 dark:bg-blue-500 dark:hover:bg-blue-600"
+disabled={!calendarCategory || !calendarTitle || !calendarDes || !color}
+>
+등록
+</button>
+</div>
+</div>
     )
 }
 

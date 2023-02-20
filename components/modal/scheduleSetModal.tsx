@@ -13,8 +13,8 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
     // 열기, 닫기, 모달 헤더 텍스트를 부모로부터 받아옴
     const {modalOpen,modalIndex,closeModal}=useModal(state=>state)   
     const {addSchedule}=useScheduleList(state=>state)
-    const [startDt,setStartDt]=useState(day.date)    
-    const [endDt,setEndDt]=useState(day.date) 
+    const [startDt,setStartDt]=useState("")    
+    const [endDt,setEndDt]=useState("") 
     const [title,setTitle]=useState('') 
     const [des,setDes]=useState('') 
     const [color,setColor]=useState('red')    
@@ -36,8 +36,8 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
             calendarId:Number(sessionStorage.getItem("calendarId")),
             startYmd:moment(startDt).format('YYYYMMDD'),
             endYmd:moment(endDt).format('YYYYMMDD'),    
-            startDt:startDt,
-            endDt:endDt,
+            startDt:new Date(startDt),
+            endDt:new Date(endDt),
             title:title,
             color:color,
             des:des
@@ -49,152 +49,97 @@ const scheduleSetModal = ({ children,day }: { children: React.ReactNode,day:days
     return (
       // 모달이 열릴때 openModal 클래스가 생성된다.
       <div className={isOpen() ?'z-999 relative':'fixed inset-0 hidden z-99'}>
-        {isOpen() ? (
-            <div className="relative z-20 ">                 
-                <div className="fixed inset-0 transition-opacity bg-gray-100 bg-opacity-40"></div>        
-                <div className="fixed inset-0 z-10 overflow-y-auto">
-                    <div className="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">           
-                        <div className='bg-white dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600  border border-gray-400 rounded shadow-md  w-[448px] h-[515px]'>
-                            <div className='h-[36px] '>
-                                <button onClick={close} className="top-0 right-0 float-right mt-2 mr-2 text-gray-400 align-middle transition duration-150 ease-in-out rounded cursor-pointer hover:text-gray-600 focus:ring-2 focus:outline-none focus:ring-gray-600" aria-label="close modal" role="button">
-                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                width="24" height="24"
-                                viewBox="0 0 24 24">
-                                <path d="M 4.7070312 3.2929688 L 3.2929688 4.7070312 L 10.585938 12 L 3.2929688 19.292969 L 4.7070312 20.707031 L 12 13.414062 L 19.292969 20.707031 L 20.707031 19.292969 L 13.414062 12 L 20.707031 4.7070312 L 19.292969 3.2929688 L 12 10.585938 L 4.7070312 3.2929688 z"></path>
-                                </svg>
-                                </button>                                
-                            </div>
-                            <div className='h-[69px] '>                                
-                                <div>
-                                    <input className='
-                                    w-3/4 h-[60px] 
-                                    font-bold 
-                                    text-black 
-                                    border-b 
-                                    outline-none 
-                                    placeholder:text-gray-400 
-                                    focus:border-blue-500 
-                                    focus:border-b-2
-                                    dark:bg-gray-800 
-                                    dark:border-gray-600 
-                                    dark:placeholder-gray-400 
-                                    dark:text-white 
-                                    dark:focus:ring-blue-500 
-                                    dark:focus:border-blue-500
-                                    ' 
-                                    placeholder='제목을 입력해주세요'
-                                    value={title}
-                                    onChange={(e)=>{setTitle(e.target.value)}}></input>                                                               
-                                </div>
-                            </div>          
-                            <div className='h-[358px] flex flex-col items-center'>                                                                
-                                <div className='flex w-3/4 my-3 text-center'>
-                                    <div className="inset-y-0 left-0 flex items-center pl-3 outline-none pointer-events-none">
-                                        <svg aria-hidden="true" 
-                                        className="w-5 h-5 text-gray-500 dark:text-gray-400" 
-                                        fill="currentColor" 
-                                        viewBox="0 0 20 20" 
-                                        xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"></path>
-                                        </svg>
-                                    </div>                                    
-                                    <DatePicker
-                                        selected={startDt}
-                                        onChange={(date:Date) => setStartDt(date)}
-                                        dateFormat="MM월 dd일 (eee)"
-                                        selectsStart                                        
-                                        locale={ko}
-                                        startDate={startDt}
-                                        endDate={endDt}    
-                                        className="
-                                        w-[150px] 
-                                        text-center outline-none 
-                                        dark:bg-gray-800 
-                                        dark:border-gray-600 
-                                        dark:placeholder-gray-400 
-                                        dark:text-white 
-                                        dark:focus:ring-blue-500 
-                                        dark:focus:border-blue-500" 
-                                        timeInputLabel="시간:"   
-                                        showTimeInput                                 
-                                    />
-                                    <p className='font-semibold'>-</p>
-                                    <DatePicker
-                                        selected={endDt}
-                                        onChange={(date:Date) => setEndDt(date)}
-                                        dateFormat="MM월 dd일 (eee)"
-                                        selectsEnd
-                                        locale={ko}
-                                        startDate={startDt}
-                                        endDate={endDt}
-                                        minDate={startDt}
-                                        className="
-                                        w-[150px] 
-                                        text-center outline-none 
-                                        dark:bg-gray-800 
-                                        dark:border-gray-600 
-                                        dark:placeholder-gray-400 
-                                        dark:text-white 
-                                        dark:focus:ring-blue-500 
-                                        dark:focus:border-blue-500" 
-                                        timeInputLabel="시간:"
-                                        showTimeInput
-                                    />                              
-                                </div>                                
-                                
-                                <div className='w-3/4 my-3'>
-                                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">설명 추가</label>
-                                    <textarea id="message" rows={4} 
-                                    className="block p-2.5 w-full text-sm 
-                                    outline-none
-                                    text-gray-900 
-                                    rounded-lg border 
-                                    border-gray-300 
-                                    focus:ring-blue-500 
-                                    focus:border-blue-500 
-                                    dark:bg-gray-800 
-                                    dark:border-gray-600 
-                                    dark:placeholder-gray-400 
-                                    dark:text-white 
-                                    dark:focus:ring-blue-500 
-                                    dark:focus:border-blue-500" 
-                                    placeholder="Write your thoughts here..."
-                                    value={des}
-                                    onChange={(e) => setDes(e.target.value)}
-                                    >                                    
-                                    </textarea>
-                                </div>
-
-                                <div className='w-3/4 my-3'>   
-                                    <div>                                            
-                                        <span className={`rounded-full w-5 h-5 bg-${color}-500 inline-block`}></span> 
-                                    </div> 
-                                    <div className='mt-2'>     
-                                        <span onClick={()=>setColor('red')} className='inline-block w-5 h-5 mx-2 bg-red-500 rounded-full'></span>
-                                        <span onClick={()=>setColor('orange')} className='inline-block w-5 h-5 mx-2 bg-orange-500 rounded-full'></span>
-                                        <span onClick={()=>setColor('green')} className='inline-block w-5 h-5 mx-2 bg-green-500 rounded-full'></span>
-                                        <span onClick={()=>setColor('blue')} className='inline-block w-5 h-5 mx-2 bg-blue-500 rounded-full'></span>
-                                        <span onClick={()=>setColor('purple')} className='inline-block w-5 h-5 mx-2 bg-purple-500 rounded-full'></span>
-                                        <span onClick={()=>setColor('pink')} className='inline-block w-5 h-5 mx-2 bg-pink-500 rounded-full'></span> 
-                                    </div> 
-                                </div>
-                            </div>       
-                            <div className='h-[50px]'>
-                                <button onClick={submit} type="button" className="
-                                text-white 
-                                bg-blue-700 
-                                hover:bg-blue-800 
-                                focus:ring-4 
-                                focus:ring-blue-300 
-                                font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 
-                                dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                                    등록
-                                </button>
-                            </div>                                                        
+        {isOpen() ? (           
+            <div className="fixed z-50 inset-0 overflow-y-auto">
+        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+          </div>
+          <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+          <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+              <h3 className="text-lg font-medium text-gray-900 mb-4">새 일정 만들기</h3>
+              <form>
+                <div className="mb-4">
+                    <label className="block text-gray-700 font-bold mb-2">
+                      제목
+                    </label>
+                    <input className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                    id="title" 
+                    type="text"
+                    value={title}
+                    onChange={(e)=>{setTitle(e.target.value)}} 
+                    placeholder="제목을 입력해주세요." />
+                  </div>                
+                <div className="mb-4">
+                    <label className="block text-gray-700 font-bold mb-2">
+                      시작일
+                    </label>                    
+                    <input 
+                    className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                    id="startDate" 
+                    type="date"
+                    value={startDt} 
+                    onChange={(e)=>{setStartDt(e.target.value)}} 
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-gray-700 font-bold mb-2">
+                      종료일
+                    </label>
+                    <input className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                    id="endDate" 
+                    type="date"
+                    value={endDt} 
+                    onChange={(e)=>{setEndDt(e.target.value)}} 
+                     />
+                  </div>
+                
+                <div className="mb-4">
+                    <label className="block text-gray-700 font-bold mb-2">
+                      본문
+                    </label>
+                    <textarea className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                    id="description" 
+                    placeholder="내용을 입력해주세요"
+                    value={des}
+                    onChange={(e) => setDes(e.target.value)}
+                    ></textarea>
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-gray-700 font-bold mb-2">
+                      색상
+                    </label>
+                    
+                    <div className="flex items-center"> 
+                        <div className="flex items-center w-1/5">
+                            <label className={`inline-block h-5 w-5 rounded-full bg-${color}-500 cursor-pointer mx-2`}></label>
                         </div>
+                        <div className="flex items-center w-4/5">                            
+                            <label className="inline-block h-5 w-5 rounded-full bg-red-500 cursor-pointer mx-2" onClick={()=>setColor('red')} ></label>                           
+                            <label className="inline-block h-5 w-5 rounded-full bg-orange-500 cursor-pointer mx-2" onClick={()=>setColor('orange')} ></label>                            
+                            <label className="inline-block h-5 w-5 rounded-full bg-green-500 cursor-pointer mx-2" onClick={()=>setColor('green')} ></label>                            
+                            <label className="inline-block h-5 w-5 rounded-full bg-blue-500 cursor-pointer mx-2" onClick={()=>setColor('blue')} ></label>                            
+                            <label className="inline-block h-5 w-5 rounded-full bg-purple-500 cursor-pointer mx-2" onClick={()=>setColor('purple')} ></label>                            
+                            <label className="inline-block h-5 w-5 rounded-full bg-pink-500 cursor-pointer mx-2" onClick={()=>setColor('pink')} ></label>                        
+                        </div>                          
                     </div>
-                </div>
+                  </div>
+                </form>
+              </div>
+              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" onClick={submit} className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-500 text-base font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm">
+                      등록
+                    </button>
+                    <button type="button" onClick={close} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                      취소
+                    </button>
+                  </div>
+              </div>
             </div>
+          </div>
+        </div>
         ) : null}
       </div>
     );
