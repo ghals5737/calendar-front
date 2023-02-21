@@ -90,14 +90,7 @@ export default function Page(){
                 <div className="mx-4 sm:mx-0">
                 <div className="mt-8">
                     <span className="text-sm font-medium">SNS 로그인</span>
-                    <div className="grid grid-cols-3 gap-3 mt-1">  
-                        <NaverLogin
-                            token={"dLiylAdbHmAPNv4dvQBQ"}
-                            callbackUrl={"http://localhost:3000/callback"}
-                            render={() =><button>                            
-                                            <Image src={naverLogo} alt="blabla Logo" />                            
-                                        </button>}
-                        />
+                    <div className="grid grid-cols-3 gap-3 mt-1">                          
                         <KaKaoLogin 
                             token={"da1341fca7194ea3f896379a7993384f"} 
                             successCallback = {successHandlerKaKao}

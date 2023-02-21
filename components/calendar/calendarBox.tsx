@@ -5,18 +5,27 @@ import { useScheduleList } from '../../store/useScheduleList';
 import {useDate} from '../../store/useDate'
 import { useCalendarBox } from '../../store/useCalendarBox';
 import {Fragment,useEffect} from 'react';
+import { useModal } from "../../store/useModal";
+import { useCalendarInfo } from "../../store/useCalendarInfo";
 
 function calendarBox({id,calendar}:{id:number,calendar:calendarInfo}){
     const {month,year}=useDate(state=>state);
     const {days,setDays}=useDaysInfo(state=>state)
     const {getScheduleList}=useScheduleList(state=>state) 
     const {calendarBoxIndex,setCalendarBoxIndex}=useCalendarBox(state=>state)    
+    const {openUpdateCalendar}=useModal(state=>state);  
+    const {setCalendar}=useCalendarInfo(state=>state);
 
-    const changeCalendar=()=>{       
-        setDays(year,month) 
-        sessionStorage.setItem("calendarId",String(calendar.calendarId))        
-        getScheduleList(Number(sessionStorage.getItem("calendarId")),days[0][0].ymd,days[4][6].ymd)
-        setCalendarBoxIndex(id)      
+    const changeCalendar=()=>{  
+        if(id===calendarBoxIndex){
+            setCalendar(calendar)            
+            openUpdateCalendar()
+        }else{
+            setDays(year,month) 
+            sessionStorage.setItem("calendarId",String(calendar.calendarId))        
+            getScheduleList(Number(sessionStorage.getItem("calendarId")),days[0][0].ymd,days[4][6].ymd)
+            setCalendarBoxIndex(id)      
+        }          
     }
 
     return (
