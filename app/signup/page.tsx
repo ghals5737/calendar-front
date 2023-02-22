@@ -49,7 +49,7 @@ export default function Page(){
                     title:sessionStorage.getItem("nickname")!,
                     description:sessionStorage.getItem("nickname")!+'님의 달력',
                     color:'red',
-                    category:'def'
+                    category:'PRSN'
             }) 
             alert("??")    
            // window.location.href = "/";
