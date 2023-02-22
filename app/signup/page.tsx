@@ -52,7 +52,7 @@ export default function Page(){
                     category:'def'
             }) 
             alert("??")    
-            window.location.href = "/";
+           // window.location.href = "/";
         })         
     }
 

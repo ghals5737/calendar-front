@@ -45,8 +45,7 @@ export const useCalendarInfo = create<CalendarDataInfo>((set) => ({
             category:calendar.category
         }).then((result)=>{
             console.log('data>',result.data.body.data)
-            sessionStorage.setItem("calendarId",result.data.body.data.calendarId)
-            alert("aa")
+            sessionStorage.setItem("calendarId",result.data.body.data.calendarId)            
             set((state) => ({
             calendars:[...state.calendars,result.data.body.data],                        
         }));
