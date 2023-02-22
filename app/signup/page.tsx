@@ -50,7 +50,8 @@ export default function Page(){
                     description:sessionStorage.getItem("nickname")!+'님의 달력',
                     color:'red',
                     category:'def'
-            })     
+            }) 
+            alert("??")    
             window.location.href = "/";
         })         
     }
