@@ -84,7 +84,7 @@ export const useCalendarInfo = create<CalendarDataInfo>((set) => ({
             console.log(result.data.body.data)
             sessionStorage.setItem("calendarId",result.data.body.data[0].calendarId)            
             set((state) => ({
-                calendars:state.calendars.filter(el=>el.calendarId!==)
+                calendars:state.calendars.filter(el=>el.calendarId!==Number(calendarId))
             }))            
         })
     },
