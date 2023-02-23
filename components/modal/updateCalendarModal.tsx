@@ -39,9 +39,8 @@ function updateCalendarModal(){
 
     const deleteC=()=>{
       deleteCalendars(String(nowCalendar!.calendarId),sessionStorage.getItem("userId")!)
-      setDays(year,month) 
-      console.log(calendars)
-      if(calendars.length>0){
+      setDays(year,month)       
+      if(calendars!=null){
         sessionStorage.setItem("calendarId",String(calendars[0].calendarId))        
         getScheduleList(Number(sessionStorage.getItem("calendarId")),days[0][0].ymd,days[4][6].ymd)
         setCalendarBoxIndex(0)    
