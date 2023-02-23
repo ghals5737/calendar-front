@@ -175,12 +175,12 @@ export default function Page(){
                 >
                     로그인
                 </button>
-                <button                        
+                {/* <button                        
                     className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-400 focus:outline-none"
                     onClick={testlogin}
                 >
                     테스트로그인
-                </button>
+                </button> */}
                 </div>
                 <p className="flex items-center justify-center space-x-1 text-sm">
                 <span>아직 회원이 아니신가요?</span

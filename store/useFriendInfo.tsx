@@ -1,16 +1,34 @@
 import friendInfo from "../types/friendInfo";
 import create from 'zustand'
+import axios from '../api/axiosInstance';
 
 interface FriendDataInfo{
     nowFriend: friendInfo|null;
     friends:friendInfo[];
     searchFriends:friendInfo[];
-
+    searchUser:(email:string)=>void;
+    requestFriend:(userId:string,friendId:string)=>void;
 }
 
 export const useFriendInfo=create<FriendDataInfo>((set) => ({
-    friends:[{id:1,email:'test1@test.com',nickname:'test1'},{id:2,email:'test2@test.com',nickname:'test2'},{id:3,email:'test3@test.com',nickname:'test3'}],
-    searchFriends:[{id:1,email:'test1@test.com',nickname:'test1'},{id:2,email:'test2@test.com',nickname:'test2'},{id:3,email:'test3@test.com',nickname:'test3'}],
+    friends:[],
+    searchFriends:[],
     nowFriend:null,
-
+    searchUser:(email)=>{
+        axios.post('/user/email',{
+            email:email
+        }).then((result)=>{
+            set(()=>({
+                searchFriends:[...result.data.body.data]
+            }))
+        })
+    },
+    requestFriend:(userId,friendId)=>{
+        axios.post('/friends/request',{
+            sendUserId:userId,
+            receiveUserId:friendId
+        }).then(()=>{
+            
+        })
+    }
 }));

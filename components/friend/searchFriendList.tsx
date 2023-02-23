@@ -11,7 +11,7 @@ const searchFriendList=()=>{
             {
                 searchFriends.map((friend,index)=>{
                     return(
-                        <SearchFriendBox id={index} friend={friend}></SearchFriendBox>
+                        <SearchFriendBox key={index} id={index} friend={friend}></SearchFriendBox>
                     )
                 })
             }

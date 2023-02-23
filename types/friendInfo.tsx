@@ -1,5 +1,5 @@
 interface friendInfo{
-    id:number;
+    userId:number;
     email:string;
     nickname:string;
 }

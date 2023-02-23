@@ -3,10 +3,12 @@ import {useState} from 'react';
 import { useCalendarInfo } from "../../store/useCalendarInfo";
 import { useModal } from "../../store/useModal";
 import SearchFriendList from '../friend/searchFriendList';
+import { useFriendInfo } from '../../store/useFriendInfo';
 
 function addFriendModal(){    
     const {addFriendOpen,closeAddFriendModal}=useModal(state=>state);
     const [email, setEmail] = useState('');
+    const {searchUser}=useFriendInfo(state=>state);
     
     const isOpen=()=>{
         return addFriendOpen
@@ -17,7 +19,7 @@ function addFriendModal(){
     }
 
     const search=()=>{
-        
+      searchUser(email)
     }
 
     return(
