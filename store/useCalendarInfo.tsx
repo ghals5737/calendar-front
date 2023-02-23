@@ -10,6 +10,7 @@ interface CalendarDataInfo {
     addCalendar:(userId:string,calendar:calendarInfo) => void;  
     updateCalendar:(calendar:calendarInfo) => void;  
     initCalendars:(userId:string) => void;
+    deleteCalendars:(calendarId:string,userId:string) => void;
     getCalendars:(userId:string) => void;  
     setCalendar:(calendar:calendarInfo)=>void;
 }  
@@ -76,5 +77,15 @@ export const useCalendarInfo = create<CalendarDataInfo>((set) => ({
         set(() => ({
             nowCalendar:calendar
         }))
-    }
+    },
+    deleteCalendars: (calendarId,userId)=>{
+        axios.delete(`/calendar/${calendarId}?userId=${userId}`)
+        .then((result)=>{
+            console.log(result.data.body.data)
+            sessionStorage.setItem("calendarId",result.data.body.data[0].calendarId)            
+            set((state) => ({
+                calendars:state.calendars.filter(el=>el.calendarId!==)
+            }))            
+        })
+    },
 }));

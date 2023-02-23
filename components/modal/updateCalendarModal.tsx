@@ -2,15 +2,23 @@
 import {useState,useEffect} from 'react';
 import { useCalendarInfo } from "../../store/useCalendarInfo";
 import { useModal } from "../../store/useModal";
+import {useDaysInfo} from '../../store/useDaysInfo';
+import {useDate} from '../../store/useDate';
+import { useScheduleList } from '../../store/useScheduleList';
+import { useCalendarBox } from '../../store/useCalendarBox';
 
 function updateCalendarModal(){
-    const {updateCalendar,nowCalendar}=useCalendarInfo(state=>state);
+    const {updateCalendar,nowCalendar,deleteCalendars,calendars}=useCalendarInfo(state=>state);
     const {updateCalOpen,closeUpdateCalendarModal}=useModal(state=>state);
     const [calendarTitle, setCalendarTitle] = useState(nowCalendar?.title);
+    const {days,setDays}=useDaysInfo(state=>state)
     const [calendarDes, setCalendarDes] = useState(nowCalendar?.description);
     const [calendarCategory, setCalendarCategory] = useState(nowCalendar?.category);
     const [color, setColor] = useState(nowCalendar?.color);   
-    
+    const {month,year}=useDate(state=>state);
+    const {getScheduleList}=useScheduleList(state=>state);
+    const {setCalendarBoxIndex}=useCalendarBox(state=>state) 
+
     useEffect(()=>{        
         setCalendarTitle(nowCalendar?.title)
         setCalendarDes(nowCalendar?.description)
@@ -27,6 +35,20 @@ function updateCalendarModal(){
             color:color
         })                
         closeUpdateCalendarModal()
+    }
+
+    const deleteC=()=>{
+      deleteCalendars(String(nowCalendar!.calendarId),sessionStorage.getItem("userId")!)
+      setDays(year,month) 
+      if(calendars.length>0){
+        sessionStorage.setItem("calendarId",String(calendars[0].calendarId))        
+        getScheduleList(Number(sessionStorage.getItem("calendarId")),days[0][0].ymd,days[4][6].ymd)
+        setCalendarBoxIndex(0)    
+      }else{
+        sessionStorage.removeItem("calendarId")        
+        setCalendarBoxIndex(0)    
+      }      
+      closeUpdateCalendarModal()
     }
 
     const isOpen=()=>{
@@ -124,6 +146,9 @@ function updateCalendarModal(){
                   disabled={calendarTitle=='' || calendarCategory=='' || calendarDes=='' || color==''}
                   >
                     수정
+                  </button>
+                  <button type="button" onClick={deleteC} className="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-red-500 border border-transparent rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                    삭제
                   </button>
                   <button type="button" onClick={close} className="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                     취소

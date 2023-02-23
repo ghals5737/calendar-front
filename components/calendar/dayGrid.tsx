@@ -12,6 +12,10 @@ function dayGrid({day}:{day:daysInfo}){
             alert("로그인이 필요합니다.")                                                      
             return
         } 
+        if (sessionStorage.getItem("calendarId") === null) { 
+            alert("달력을 만들어 주세요.")                                                      
+            return
+        } 
         if(modalOpen!==true){
             setModalIndex(day.id)
             openModal()
