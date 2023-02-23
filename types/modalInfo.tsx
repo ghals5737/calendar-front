@@ -3,6 +3,7 @@ interface modalInfo {
     modalIndex: number;
     createCalOpen: Boolean;
     updateCalOpen: Boolean;
+    addFriendOpen: Boolean;
     setModalIndex:(num:number)=>void;
     openModal: () => void;
     closeModal: () => void;
@@ -10,6 +11,8 @@ interface modalInfo {
     closeCreateCalendarModal: () => void;
     openUpdateCalendar: () => void;
     closeUpdateCalendarModal: () => void;
+    opendAddFriendModal:()=>void;
+    closeAddFriendModal:()=>void;
 }  
 
 export default modalInfo

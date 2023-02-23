@@ -5,10 +5,14 @@ import { useModal } from "../../store/useModal";
 
 
 function addCalendarSideBar(){
-    const {openCreateCalendar}=useModal(state=>state);    
+    const {openCreateCalendar,opendAddFriendModal}=useModal(state=>state);    
 
     const openCreateCalendarModal=()=>{
         openCreateCalendar()
+    }
+
+    const openAddFriendModal=()=>{
+        opendAddFriendModal()
     }
 
     return(
@@ -27,7 +31,7 @@ function addCalendarSideBar(){
             </div>
             <FriendList></FriendList>
             <div className='flex items-center mt-2'>                
-                    <div role="button" className="pl-1 pr-2">
+                    <div role="button" className="pl-1 pr-2" onClick={openAddFriendModal}>
                         <div className="flex items-center justify-center w-12 border-2 border-dotted border-zinc-500 h-11">
                             <span className='text-2xl font-bold text-zinc-500'>+</span>                                       
                         </div>

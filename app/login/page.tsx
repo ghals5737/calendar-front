@@ -33,7 +33,12 @@ export default function Page(){
             snsLogin(userData.email,'NAVER')             
         }
     }, [snsEmail]);
-
+    const testlogin=()=>{
+        sessionStorage.setItem("userId","test")
+            sessionStorage.setItem("nickname","test")
+            //initCalendars(sessionStorage.getItem("userId")!) 
+            window.location.href = "/";
+    }
 
     const login=()=>{        
         axios.post('/user/login',{
@@ -169,6 +174,12 @@ export default function Page(){
                     onClick={login}
                 >
                     로그인
+                </button>
+                <button                        
+                    className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-500 border border-transparent rounded-md hover:bg-blue-400 focus:outline-none"
+                    onClick={testlogin}
+                >
+                    테스트로그인
                 </button>
                 </div>
                 <p className="flex items-center justify-center space-x-1 text-sm">

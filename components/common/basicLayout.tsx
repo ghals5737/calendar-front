@@ -6,7 +6,7 @@ import AddCalendarSideBar from './addCalendarSideBar';
 
 function BasicLayout({ children }: { children: React.ReactNode }) {
   const {isAddCalendar}=useSwitchSideBar(state=>state)
-
+  
   return (
     <div className='h-full text-gray-900 dark:bg-gray-800 dark:text-gray-100'>
       <Header /> 

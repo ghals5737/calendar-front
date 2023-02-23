@@ -6,6 +6,7 @@ export const useModal = create<modalInfo>((set) => ({
   modalIndex:0,
   createCalOpen:false,
   updateCalOpen:false,
+  addFriendOpen:false,
   setModalIndex:(num:number)=>{
     set(()=>({modalIndex:num}))
   },
@@ -26,5 +27,11 @@ export const useModal = create<modalInfo>((set) => ({
   },
   closeUpdateCalendarModal: () => {        
     set(() => ({ updateCalOpen: false }));
+  },
+  opendAddFriendModal: () => {        
+    set(() => ({ addFriendOpen: true }));
+  },
+  closeAddFriendModal: () => {        
+    set(() => ({ addFriendOpen: false }));
   },
 }));

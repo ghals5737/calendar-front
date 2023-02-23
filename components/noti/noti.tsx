@@ -10,32 +10,36 @@ const noti=()=>{
     }
     return(        
         <div className="">
-            <div className="fixed top-16 right-6 w-80 max-h-72 bg-white shadow-md rounded-sm overflow-y-auto hidden z-999">
-                <div className="py-2 px-3 border-b border-gray-200 font-bold text-lg text-gray-700">알림</div>
-                <div className="p-3 cursor-pointer hover:bg-gray-100 border-b border-gray-200">
+            <div className="fixed hidden overflow-y-auto bg-white rounded-sm shadow-md top-16 right-6 w-80 max-h-72 z-999">
+                <div className="px-3 py-2 text-lg font-bold text-gray-700 border-b border-gray-200">알림</div>
+
+                <div className="p-3 border-b border-gray-200 cursor-pointer hover:bg-gray-100">
                 <div className="flex items-center">
-                    <span className="material-icons text-blue-500 text-2xl mr-2">email</span>
+                    <span className="mr-2 text-2xl text-blue-500 material-icons">email</span>
                     <div className="flex-grow text-sm font-medium text-gray-700 truncate">새 이메일이 도착했습니다.</div>
-                    <div className="text-xs text-gray-500 ml-2">1분 전</div>
+                    <div className="ml-2 text-xs text-gray-500">1분 전</div>
                 </div>
-                <div className="text-sm text-gray-500 mt-1 truncate">이메일을 확인해 보세요.</div>
+                <div className="mt-1 text-sm text-gray-500 truncate">이메일을 확인해 보세요.</div>
                 </div>
-                <div className="p-3 cursor-pointer hover:bg-gray-100 border-b border-gray-200">
+
+                <div className="p-3 border-b border-gray-200 cursor-pointer hover:bg-gray-100">
                 <div className="flex items-center">
-                    <span className="material-icons text-blue-500 text-2xl mr-2">message</span>
+                    <span className="mr-2 text-2xl text-blue-500 material-icons">message</span>
                     <div className="flex-grow text-sm font-medium text-gray-700 truncate">새 메시지가 도착했습니다.</div>
-                    <div className="text-xs text-gray-500 ml-2">10분 전</div>
+                    <div className="ml-2 text-xs text-gray-500">10분 전</div>
                 </div>
-                <div className="text-sm text-gray-500 mt-1 truncate">메시지를 확인해 보세요.</div>
+                <div className="mt-1 text-sm text-gray-500 truncate">메시지를 확인해 보세요.</div>
                 </div>
+
                 <div className="p-3 cursor-pointer hover:bg-gray-100">
                 <div className="flex items-center">
-                    <span className="material-icons text-blue-500 text-2xl mr-2">notifications</span>
+                    <span className="mr-2 text-2xl text-blue-500 material-icons">notifications</span>
                     <div className="flex-grow text-sm font-medium text-gray-700 truncate">새 알림이 있습니다.</div>
-                    <div className="text-xs text-gray-500 ml-2">1시간 전</div>
+                    <div className="ml-2 text-xs text-gray-500">1시간 전</div>
                 </div>
-                <div className="text-sm text-gray-500 mt-1 truncate">알림을 확인해 보세요.</div>
+                <div className="mt-1 text-sm text-gray-500 truncate">알림을 확인해 보세요.</div>
                 </div>
+                
             </div>
             <button className="w-8 h-8 text-gray-500 rounded-full hover:bg-gray-100 focus:outline-none" onClick={openNotiList}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

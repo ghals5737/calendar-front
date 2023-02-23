@@ -57,8 +57,8 @@ export const useCalendarInfo = create<CalendarDataInfo>((set) => ({
             id:calendar.calendarId,
             title:calendar.title,
             description:calendar.description,
-            color:calendar.color,
-            category:calendar.category
+            category:calendar.category,
+            color:calendar.color            
         }).then((result)=>{
             console.log('data>',result.data.body.data)
             sessionStorage.setItem("calendarId",result.data.body.data.calendarId)
