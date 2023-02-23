@@ -80,9 +80,7 @@ export const useCalendarInfo = create<CalendarDataInfo>((set) => ({
     },
     deleteCalendars: (calendarId,userId)=>{
         axios.delete(`/calendar/${calendarId}?userId=${userId}`)
-        .then((result)=>{
-            console.log(result.data.body.data)
-            sessionStorage.setItem("calendarId",result.data.body.data[0].calendarId)            
+        .then((result)=>{           
             set((state) => ({
                 calendars:state.calendars.filter(el=>el.calendarId!==Number(calendarId))
             }))            
