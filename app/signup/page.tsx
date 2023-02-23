@@ -50,9 +50,8 @@ export default function Page(){
                     description:sessionStorage.getItem("nickname")!+'님의 달력',
                     color:'red',
                     category:'PRSN'
-            }) 
-            alert("??")    
-           // window.location.href = "/";
+            })             
+            window.location.href = "/";
         })         
     }
 
