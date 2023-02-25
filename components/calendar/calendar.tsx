@@ -9,6 +9,7 @@ import { useCalendarInfo } from '../../store/useCalendarInfo';
 import CreateCalendarModal from '../modal/createCalendarModal';
 import UpdateCalendarModal from '../modal/updateCalendarModal';
 import AddFriendModal from '../modal/addFriendModal';
+import ShareModal from '../modal/shareModal';
 function calendar(){
     const {month,year,addMonth,minusMonth,addYear,minusYear,resetToday}=useDate(state=>state);
     const {days,setDays}=useDaysInfo(state=>state);
@@ -94,6 +95,7 @@ function calendar(){
          <CreateCalendarModal></CreateCalendarModal> 
          <UpdateCalendarModal></UpdateCalendarModal>
          <AddFriendModal></AddFriendModal>
+         <ShareModal></ShareModal>
          </Fragment>            
     )
 }

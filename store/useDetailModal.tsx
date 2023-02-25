@@ -7,6 +7,7 @@ export const useDetailModal = create<modalInfo>((set) => ({
   createCalOpen:false,
   updateCalOpen:false,
   addFriendOpen:false,
+  shareCalOpen:false,
   setModalIndex:(num:number)=>{
     set(()=>({modalIndex:num}))
   },
@@ -33,5 +34,11 @@ export const useDetailModal = create<modalInfo>((set) => ({
   },
   closeAddFriendModal: () => {        
     set(() => ({ addFriendOpen: false }));
+  },
+  openShareCalModal: () => {        
+    set(() => ({ shareCalOpen: true }));
+  },
+  closeShareCalModal: () => {        
+    set(() => ({ shareCalOpen: false }));
   },
 }));
