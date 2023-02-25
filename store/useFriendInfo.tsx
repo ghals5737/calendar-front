@@ -8,6 +8,7 @@ interface FriendDataInfo{
     searchFriends:friendInfo[];
     searchUser:(email:string)=>void;
     requestFriend:(userId:string,friendId:string)=>void;
+    acceptFriend:(notiId:string,sendUserId:string,receiveUserId:string)=>void;
 }
 
 export const useFriendInfo=create<FriendDataInfo>((set) => ({
@@ -30,5 +31,13 @@ export const useFriendInfo=create<FriendDataInfo>((set) => ({
         }).then(()=>{
             
         })
-    }
+    },
+    acceptFriend:(notiId,sendUserId,receiveUserId)=>{
+        axios.post('/friends/request',{
+            notiId:notiId,
+            sendUserId:sendUserId,
+            receiveUserId:receiveUserId
+        }).then((result)=>{
+        })
+    },
 }));

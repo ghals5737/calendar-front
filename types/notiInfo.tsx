@@ -6,6 +6,7 @@ enum notiType{
 interface notiInfo {  
     notiId:number;
     notiType:notiType;
+    sendUserId:number;
     nickname:string;
     email:string;
 }  
