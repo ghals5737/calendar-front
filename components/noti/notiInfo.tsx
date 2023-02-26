@@ -1,10 +1,12 @@
 import notiInfo from "../../types/notiInfo"
 import React, {useEffect,Fragment, useState} from 'react';
 import { useFriendInfo } from "../../store/useFriendInfo";
+import { useNoti } from "../../store/useNoti";
 
 const notiInfo=({noti}:{noti:notiInfo})=>{
     const [msg, setMsg] = useState('');
     const {acceptFriend}=useFriendInfo(state=>state);
+    const {deleteNotiList}=useNoti(state=>state);
 
     useEffect(()=>{
         switch(noti.notiType){
@@ -20,7 +22,8 @@ const notiInfo=({noti}:{noti:notiInfo})=>{
         }
     },[])
     const accept=()=>{
-        acceptFriend(String(noti.notiId),sessionStorage.getItem("userId")!,String(noti.sendUserId))
+        acceptFriend(String(noti.notiId),String(noti.sendUserId),sessionStorage.getItem("userId")!)
+        deleteNotiList(noti.notiId)
     }
     return(
         <div className="p-3 border-b border-gray-200 cursor-pointer hover:bg-gray-100">

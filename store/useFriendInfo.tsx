@@ -9,12 +9,18 @@ interface FriendDataInfo{
     searchUser:(email:string)=>void;
     requestFriend:(userId:string,friendId:string)=>void;
     acceptFriend:(notiId:string,sendUserId:string,receiveUserId:string)=>void;
+    setFriend:(friend:friendInfo)=>void;
 }
 
 export const useFriendInfo=create<FriendDataInfo>((set) => ({
-    friends:[],
+    friends:[{userId:1,email:'test',nickname:'test'}],
     searchFriends:[],
     nowFriend:null,
+    setFriend:(friend)=>{
+        set(()=>({
+            nowFriend:friend
+        }))
+    },
     searchUser:(email)=>{
         axios.post('/user/email',{
             email:email
@@ -33,11 +39,12 @@ export const useFriendInfo=create<FriendDataInfo>((set) => ({
         })
     },
     acceptFriend:(notiId,sendUserId,receiveUserId)=>{
-        axios.post('/friends/request',{
+        axios.post('/friends/accept',{
             notiId:notiId,
             sendUserId:sendUserId,
             receiveUserId:receiveUserId
         }).then((result)=>{
+            
         })
     },
 }));

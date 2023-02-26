@@ -1,11 +1,14 @@
 import friendInfo from "../../types/friendInfo";
 import { useModal } from "../../store/useModal";
+import {useFriendInfo} from "../../store/useFriendInfo";
 
 const friendBox=({id,friend}:{id:number,friend:friendInfo})=>{
     const {openShareCalModal}=useModal(state=>state);
+    const {setFriend}=useFriendInfo(state=>state);
 
     const open=()=>{
         openShareCalModal()
+        setFriend(friend)
     }
 
     return (<li 

@@ -7,7 +7,7 @@ import axios from '../api/axiosInstance';
 interface NotiDataInfo {    
    notiList:notiInfo[];
    getNotiList:(userId:string)=>void;
-   removeNoti:(notiId:number)=>void;
+   deleteNotiList:(notiId:number)=>void;
 }  
 
 export const useNoti = create<NotiDataInfo>((set) => ({
@@ -15,14 +15,15 @@ export const useNoti = create<NotiDataInfo>((set) => ({
     getNotiList:(userId)=>{
       axios.get(`/notis/users/${userId}`)
       .then((result)=>{
+         console.log('notilist',result.data.body.data)
          set(()=>({
             notiList:[...result.data.body.data]
          }))
       })
     },
-    removeNoti:(notiId)=>{
-        set((state)=>({
-            notiList:state.notiList.filter((noti)=>noti.notiId!==notiId)
-        }))
+    deleteNotiList:(notiId)=>{
+      set((state)=>({
+         notiList:state.notiList.filter(el=>el.notiId!=notiId)
+      }))
     }
 }));
