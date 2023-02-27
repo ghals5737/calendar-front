@@ -26,9 +26,9 @@ const shareModal=()=>{
             receiveUserId:nowFriend?.userId,
             calendarIds:shareCalendarList
         }).then((result)=>{
-            
-        })
-        closeShareCalModal()
+          console.log("share",result)
+          closeShareCalModal()
+        })        
     }
 
     return(        

@@ -1,11 +1,14 @@
 import friendInfo from "../../types/friendInfo";
 import { useFriendInfo } from '../../store/useFriendInfo';
+import { useModal } from '../../store/useModal';
 
 const searchFriendBox=({id,friend}:{id:number,friend:friendInfo})=>{
     const {requestFriend}=useFriendInfo(state=>state)
-
+    const {closeAddFriendModal}=useModal(state=>state);
+    
     const request=()=>{
         requestFriend(sessionStorage.getItem("userId")!,String(friend.userId))
+        closeAddFriendModal()
     }
     
     return (<li className="flex items-center justify-between py-2 border-b hover:bg-gray-200">
