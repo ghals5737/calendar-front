@@ -21,14 +21,16 @@ const shareModal=()=>{
         closeShareCalModal()
     }
 
-    const share=()=>{        
-        axios.post('/share',{
+    const share=()=>{  
+        if(shareCalendarList.length>0){
+          axios.post('/share',{
             receiveUserId:nowFriend?.userId,
             calendarIds:shareCalendarList
-        }).then((result)=>{
-          console.log("share",result)
-          closeShareCalModal()
-        })        
+          }).then((result)=>{
+            console.log("share",result)            
+          })        
+        }      
+        closeShareCalModal()        
     }
 
     return(        
@@ -61,8 +63,7 @@ const shareModal=()=>{
                   <button 
                   type="button" 
                   onClick={share} 
-                  className="px-4 py-2 ml-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-                  disabled={shareCalendarList.length>0}
+                  className="px-4 py-2 ml-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"          
                   >
                     공유
                   </button>
