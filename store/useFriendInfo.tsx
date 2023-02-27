@@ -14,7 +14,7 @@ interface FriendDataInfo{
 }
 
 export const useFriendInfo=create<FriendDataInfo>((set) => ({
-    friends:[{userId:1,email:'test',nickname:'test'}],
+    friends:[],
     searchFriends:[],
     nowFriend:null,
     setFriend:(friend)=>{
