@@ -17,9 +17,11 @@ const noti=()=>{
                 <div className="px-3 py-2 text-lg font-bold text-gray-700 border-b border-gray-200">알림</div>
                     {
                         notiList.map((noti,index)=>{
-                            return(
-                                <NotiInfo key={index} noti={noti}></NotiInfo>
-                            )
+                            if(noti.notiType=='FRIEND_REQUEST'){
+                                return(
+                                    <NotiInfo key={index} noti={noti}></NotiInfo>
+                                )
+                            }                            
                         })
                     }                         
             </div>
