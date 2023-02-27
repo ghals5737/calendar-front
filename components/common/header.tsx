@@ -54,7 +54,8 @@ function header(){
     } 
     if(isAddCalendar==false){     
       openAddCalendar()   
-      getFriendList(sessionStorage.getItem("userId")!)   
+      getFriendList(sessionStorage.getItem("userId")!) 
+      getCalendars(sessionStorage.getItem("userId")!)  
       return      
     }
     closeAddCalendar()

@@ -64,16 +64,7 @@ export default function Page(){
             console.log("result>",result.data.body.data)
             sessionStorage.setItem("userId",result.data.body.data.userId)
             sessionStorage.setItem("nickname",result.data.body.data.nickname) 
-            
-            addCalendar(
-                sessionStorage.getItem("userId")!
-                ,{
-                    calendarId:0,
-                    title:sessionStorage.getItem("nickname")!,
-                    description:sessionStorage.getItem("nickname")!+'님의 달력',
-                    color:'red',
-                    category:'def'
-            })     
+                
             window.location.href = "/";
         })         
 

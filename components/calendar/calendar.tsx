@@ -14,7 +14,7 @@ function calendar(){
     const {month,year,addMonth,minusMonth,addYear,minusYear,resetToday}=useDate(state=>state);
     const {days,setDays}=useDaysInfo(state=>state);
     const {getScheduleList}=useScheduleList(state=>state)    
-    const {getCalendars}=useCalendarInfo(state=>state)
+    const {getCalendars,initCalendars}=useCalendarInfo(state=>state)
 
     const increaseMonth=()=>{
         if(month===12){            
@@ -36,6 +36,9 @@ function calendar(){
         console.log("end days:",days[4][6].ymd)
         if(sessionStorage.getItem("calendarId")!==null){   
             getCalendars(sessionStorage.getItem("userId")!)         
+            getScheduleList(Number(sessionStorage.getItem("calendarId")),days[0][0].ymd,days[4][6].ymd)
+        }else{
+            initCalendars(sessionStorage.getItem("userId")!)
             getScheduleList(Number(sessionStorage.getItem("calendarId")),days[0][0].ymd,days[4][6].ymd)
         }
     },[month])
