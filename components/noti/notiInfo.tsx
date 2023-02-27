@@ -22,7 +22,7 @@ const notiInfo=({noti}:{noti:notiInfo})=>{
         }
     },[])
     const accept=()=>{
-        acceptFriend(String(noti.notiId),String(noti.sendUserId),sessionStorage.getItem("userId")!)
+        acceptFriend(String(noti.notiId),sessionStorage.getItem("userId")!,String(noti.sendUserId))
         deleteNotiList(noti.notiId)
     }
     return(
