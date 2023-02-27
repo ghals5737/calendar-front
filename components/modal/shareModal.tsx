@@ -28,6 +28,7 @@ const shareModal=()=>{
         }).then((result)=>{
             
         })
+        closeShareCalModal()
     }
 
     return(        
@@ -57,7 +58,12 @@ const shareModal=()=>{
                     </div>
                 </div>
                 <div className="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">     
-                  <button type="button" onClick={share} className="px-4 py-2 ml-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">
+                  <button 
+                  type="button" 
+                  onClick={share} 
+                  className="px-4 py-2 ml-4 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+                  disabled={shareCalendarList.length>0}
+                  >
                     공유
                   </button>
                   <button type="button" onClick={close} className="px-4 py-2 ml-4 font-bold text-white bg-gray-500 rounded hover:bg-gray-700 focus:outline-none focus:shadow-outline">

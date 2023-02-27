@@ -10,6 +10,7 @@ interface FriendDataInfo{
     requestFriend:(userId:string,friendId:string)=>void;
     acceptFriend:(notiId:string,sendUserId:string,receiveUserId:string)=>void;
     setFriend:(friend:friendInfo)=>void;
+    getFriendList:(userId:string)=>void;
 }
 
 export const useFriendInfo=create<FriendDataInfo>((set) => ({
@@ -47,4 +48,12 @@ export const useFriendInfo=create<FriendDataInfo>((set) => ({
             
         })
     },
+    getFriendList:(userId)=>{
+        axios.get(`/friends/users/${userId}`)
+        .then((result)=>{
+            set(()=>({
+                friends:[...result.data.body.data]
+            }))            
+        })
+    }
 }));

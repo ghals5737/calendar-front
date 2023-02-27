@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useSwitchSideBar } from '../../store/useSwitchSideBar';
 import {usePathname,useRouter} from 'next/navigation';
 import { useCalendarInfo } from '../../store/useCalendarInfo';
+import { useFriendInfo } from '../../store/useFriendInfo';
 import Noti from '../noti/noti';
 function header(){  
   //const [theme,setTheme]=useState('light')  
@@ -15,6 +16,7 @@ function header(){
   const pathname  = usePathname()
   const router= useRouter()  
   const {getCalendars}=useCalendarInfo(state=>state);
+  const {getFriendList}=useFriendInfo(state=>state);
 
   //const nickname = sessionStorage.getItem('nickname') : null;
   useEffect(()=>{
@@ -51,7 +53,8 @@ function header(){
       return
     } 
     if(isAddCalendar==false){     
-      openAddCalendar()      
+      openAddCalendar()   
+      getFriendList(sessionStorage.getItem("userId")!)   
       return      
     }
     closeAddCalendar()
