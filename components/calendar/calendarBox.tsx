@@ -17,21 +17,21 @@ function calendarBox({id,calendar}:{id:number,calendar:calendarInfo}){
     const {setCalendar}=useCalendarInfo(state=>state);
 
     const changeCalendar=()=>{  
-        if(id===calendarBoxIndex){
+        if(calendar.calendarId===calendarBoxIndex){
             setCalendar(calendar)            
             openUpdateCalendar()
         }else{
             setDays(year,month) 
             sessionStorage.setItem("calendarId",String(calendar.calendarId))        
             getScheduleList(Number(sessionStorage.getItem("calendarId")),days[0][0].ymd,days[4][6].ymd)
-            setCalendarBoxIndex(id)      
+            setCalendarBoxIndex(calendar.calendarId)      
         }          
     }
 
     return (
         <Fragment>
             {
-                id===calendarBoxIndex?
+                calendar.calendarId===calendarBoxIndex?
                 <div className="mb-1" role="button" onClick={changeCalendar}>
                     <li className="px-1">                
                         <div className={`flex items-center justify-center w-12 bg-${calendar.color}-500 rounded-sm h-11 opacity-100`}>

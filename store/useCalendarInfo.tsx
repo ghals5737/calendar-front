@@ -7,7 +7,7 @@ import axios from '../api/axiosInstance';
 interface CalendarDataInfo {    
     calendars: calendarInfo[]; 
     nowCalendar: calendarInfo|null;
-    addCalendar:(userId:string,calendar:calendarInfo) => void;  
+    addCalendar:(userId:string,calendar:calendarInfo) => void;      
     updateCalendar:(calendar:calendarInfo) => void;  
     initCalendars:(userId:string) => void;
     deleteCalendars:(calendarId:string,userId:string) => void;
