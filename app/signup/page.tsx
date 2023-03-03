@@ -108,7 +108,7 @@ export default function Page(){
                 MiniCalendar 오신것을 환영합니다.
                 </h2>                
                 <div className="mx-4 sm:mx-0">
-                <div className="mt-8">
+                {/* <div className="mt-8">
                     <span className="text-sm font-medium">SNS 회원가입</span>
                     <div className="grid grid-cols-3 gap-3 mt-1">
                         <NaverLogin
@@ -135,7 +135,7 @@ export default function Page(){
                                             </button>}
                         />
                     
-                    </div>
+                    </div> */}
                 </div>
                 <div className="relative my-7">
                     <div className="absolute inset-0 flex items-center">

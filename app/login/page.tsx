@@ -93,7 +93,7 @@ export default function Page(){
                 MiniCalendar에 오신것을 환영합니다.
                 </h2>   
                 <div className="mx-4 sm:mx-0">
-                <div className="mt-8">
+                {/* <div className="mt-8">
                     <span className="text-sm font-medium">SNS 로그인</span>
                     <div className="grid grid-cols-3 gap-3 mt-1">                          
                         <KaKaoLogin 
@@ -114,7 +114,7 @@ export default function Page(){
                         />
                         
                     </div>
-                </div>
+                </div> */}
                 <div className="relative mt-4">
                     <div className="absolute inset-0 flex items-center">
                     <div
