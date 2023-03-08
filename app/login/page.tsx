@@ -92,29 +92,7 @@ export default function Page(){
             <h2 className="mt-6 text-2xl font-bold text-center sm:text-3xl">
                 MiniCalendar에 오신것을 환영합니다.
                 </h2>   
-                <div className="mx-4 sm:mx-0">
-                {/* <div className="mt-8">
-                    <span className="text-sm font-medium">SNS 로그인</span>
-                    <div className="grid grid-cols-3 gap-3 mt-1">                          
-                        <KaKaoLogin 
-                            token={"da1341fca7194ea3f896379a7993384f"} 
-                            successCallback = {successHandlerKaKao}
-                            fail = {failHandlerKaKao}
-                            render ={() =><button>
-                                                <Image src={kakaoLogo} alt="blabla Logo" />                            
-                                            </button>}
-                        />    
-                        <GoogleLogin 
-                            token={"684748789705-419aln9eqrnfo58vno506sr69rs3f58i.apps.googleusercontent.com"} 
-                            success = {successHandlerGoogle}
-                            fail = {failHandlerGoogle}
-                            render ={() => <button>
-                                                <Image src={googleLogo} alt="blabla Logo" />                            
-                                            </button>}
-                        />
-                        
-                    </div>
-                </div> */}
+                <div className="mx-4 sm:mx-0">               
                 <div className="relative mt-4">
                     <div className="absolute inset-0 flex items-center">
                     <div

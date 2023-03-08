@@ -108,34 +108,7 @@ export default function Page(){
                 MiniCalendar 오신것을 환영합니다.
                 </h2>                
                 <div className="mx-4 sm:mx-0">
-                {/* <div className="mt-8">
-                    <span className="text-sm font-medium">SNS 회원가입</span>
-                    <div className="grid grid-cols-3 gap-3 mt-1">
-                        <NaverLogin
-                                token={"dLiylAdbHmAPNv4dvQBQ"}
-                                callbackUrl={"http://localhost:3000/callback"}
-                                render={() =><button>                            
-                                                <Image src={naverLogo} alt="blabla Logo" />                            
-                                            </button>}
-                        />
-                        <KaKaoLogin 
-                            token={"da1341fca7194ea3f896379a7993384f"} 
-                            successCallback = {successHandlerKaKao}
-                            fail = {failHandlerKaKao}
-                            render ={() =><button>
-                                                <Image src={kakaoLogo} alt="blabla Logo" />                            
-                                            </button>}
-                        />    
-                        <GoogleLogin 
-                            token={"684748789705-419aln9eqrnfo58vno506sr69rs3f58i.apps.googleusercontent.com"} 
-                            success = {successHandlerGoogle}
-                            fail = {failHandlerGoogle}
-                            render ={() => <button>
-                                                <Image src={googleLogo} alt="blabla Logo" />                            
-                                            </button>}
-                        />
-                    
-                    </div> */}
+              
                 </div>
                 <div className="relative my-7">
                     <div className="absolute inset-0 flex items-center">
